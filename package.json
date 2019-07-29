@@ -1,6 +1,6 @@
 {
-  "name": "webxr",
-  "description": "WebXR Device API Specification",
+  "name": "webxr-gamepads-module",
+  "description": "WebXR Gamepads Module - Level 1",
   "version": "0.0.1",
   "devDependencies": {
     "browser-sync": "^2.18.8"
