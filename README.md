@@ -1,37 +1,30 @@
-# WebXR Device API Specification
+# WebXR Gamepads Module - Level 1
 
-[![Build Status](https://travis-ci.org/immersive-web/webxr.svg?branch=master)](https://travis-ci.org/immersive-web/webxr)
+[![Build Status](https://travis-ci.org/immersive-web/webxr-gamepads-module.svg?branch=master)](https://travis-ci.org/immersive-web/webxr-gamepads-module)
 
-The WebXR device API is for accessing virtual reality (VR) and augmented reality (AR) devices, including sensors and head-mounted displays on the Web. 
-
-|    |             Headset Devices             | Handheld Device e.g. Phone |
-|----|:---------------------------------------:|:--------------------------:|
-| VR | VR Devices, previously handled by WebVR | Magic Window Behaviour     |
-| AR | Mixed Reality Headsets                  | Phone AR                   |
-
-The [WebXR Device API Specification][1] is the repository of the [Immersive Web Working Group][17].
+The [WebXR Gamepads Module][21] is for accessing the state of buttons, triggers, thumbsticks, and touchpads associated with virtual reality (VR) and augmented reality (AR) motion controllers on the Web. This specification is a product of the [Immersive Web Working Group][17].
 
 ## Taking Part
 
 1. Read the [code of conduct][18]
-2. See if your issue is being discussed in the [issues][8], or if your idea is being discussed in the [proposals repo][19].
-3. We will be publishing the minutes from the bi-weekly calls.
+2. See if your issue is being discussed in the [issues][21], or if your idea is being discussed in the [proposals repo][19].
+3. We will be publishing the minutes from working group's bi-weekly calls.
 4. You can also join the working group to participate in these discussions.
 
 ## Specifications
+This repo is for the design of the [WebXR Gamepads Module - Level 1][21] which adds extends the WebXR Device API to allow developers to query button, trigger, thumbstick, and touchpad state.
 
-* [WebXR Device API Specification][1]: Main specification for JavaScript API for accessing VR and AR devices, including sensors and head-mounted displays.
-* [Legacy WebVR API Specification][2]: Legacy WebVR API 1.1 specification for JavaScript API for accessing VR displays. Development of the WebVR API has halted in favor of being replaced the WebXR Device API. Several browsers will continue to support this version of the API in the meantime.
+### Related specifications
+* [WebXR Device API - Level 1][1]: Main specification for JavaScript API for accessing VR and AR devices, including sensors and head-mounted displays.
 * [Gamepad API Specification][5]: Introduces a low-level JS API interface for accessing gamepad devices.
-* [Legacy Gamepad Extensions API Specification][6]: Extends the Gamepad API to enable access to more advanced device capabilities.
+* [Legacy WebVR API Specification][2]: Legacy WebVR API 1.1 specification for JavaScript API for accessing VR displays. Development of the WebVR API has halted in favor of being replaced the WebXR Device API. Several browsers will continue to support this version of the API in the meantime.
+* [Legacy Gamepad Extensions API Specification][6]: Legacy WebVR API extensions the Gamepad API to enable access to motion controller capabilities.
 
 
 ## Relevant Links
 
 * [Immersive Web Community Group][3]
-* [WebXR Device API Specification][1]
 * [Immersive Web Early Adopters Guide][16]
-* [Legacy WebVR API Specification][2]
 * [Immersive Web Working Group Charter][4]
 
 
@@ -39,7 +32,7 @@ The [WebXR Device API Specification][1] is the repository of the [Immersive Web 
 
 * [Immersive Web Working Group][17]
 * [Immersive Web Community Group][3]
-* [GitHub issues list: `webxr`][8]
+* [GitHub issues list: `webxr-gamepads-module`][21]
 * [`public-immersive-web` mailing list][20]
 * [Legacy `public-webvr` mailing list archive][7]
 
@@ -88,3 +81,5 @@ Per the [`LICENSE.md`](LICENSE.md) file:
 [18]: https://immersive-web.github.io/homepage/code-of-conduct.html
 [19]: https://github.com/immersive-web/proposals
 [20]: https://lists.w3.org/Archives/Public/public-immersive-web/
+[21]: https://immersive-web.github.io/webxr-gamepads-module
+[22]: https://github.com/immersive-web/webxr-gamepads-module/issues
