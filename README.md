@@ -1,4 +1,4 @@
-# WebXR Gamepads Module Specification
+# WebXR Gamepads Module - Level 1
 
 [![Build Status](https://travis-ci.org/immersive-web/webxr-gamepads-module.svg?branch=master)](https://travis-ci.org/immersive-web/webxr-gamepads-module)
 
@@ -12,7 +12,7 @@ The [WebXR Gamepads Module][21] is for accessing the state of buttons, triggers,
 4. You can also join the working group to participate in these discussions.
 
 ## Specifications
-This repo is for the design of the [WebXR Gamepads Module - Level 1][21] specification which adds support to the WebXR Device API for querying button, trigger, thumbstick, and touchpad state.
+This repo is for the design of the [WebXR Gamepads Module - Level 1][21] which adds extends the WebXR Device API to allow developers to query button, trigger, thumbstick, and touchpad state.
 
 ### Related specifications
 * [WebXR Device API - Level 1][1]: Main specification for JavaScript API for accessing VR and AR devices, including sensors and head-mounted displays.
@@ -32,7 +32,7 @@ This repo is for the design of the [WebXR Gamepads Module - Level 1][21] specifi
 
 * [Immersive Web Working Group][17]
 * [Immersive Web Community Group][3]
-* [GitHub issues list: `webxr-gamepads`][21]
+* [GitHub issues list: `webxr-gamepads-module`][21]
 * [`public-immersive-web` mailing list][20]
 * [Legacy `public-webvr` mailing list archive][7]
 

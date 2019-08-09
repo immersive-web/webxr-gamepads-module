@@ -1,4 +1,4 @@
-# WebXR Device API - Gamepads
+# WebXR Gamepads Module - Level 1
 This document explains the portion of the WebXR APIs for interacting with the buttons, triggers, thumbsticks, and touchpads of an `XRInputSource`. For context, it may be helpful to have first read the official [Core WebXR spec](https://www.w3.org/TR/webxr/) and the related explainers ([core explainer](https://github.com/immersive-web/webxr/blob/master/explainer.md) and [input explainer](https://github.com/immersive-web/webxr/blob/master/input-explainer.md)) found in the main [WebXR repo](https://github.com/immersive-web/webxr/).
 
 ## Concepts
