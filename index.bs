@@ -120,11 +120,11 @@ Introduction {#intro}
 
 <section class="non-normative">
 
-Hardware that enables Virtual Reality (VR) and Augmented Reality (AR) applications are now broadly available to consumers, offering an immersive computing platform with both new opportunities and challenges. The ability to interact directly with immersive hardware is critical to ensuring that the web is well equipped to operate as a first-class citizen in this environment. The WebXR Gamepads specification adds interfaces and behaviors to the WebXR Device API and the Gamepads API to allow for querying the state of buttons, triggers, thumbsticks, and touchpads available as input sources on many WebXR compatible devices. 
+Hardware that enables Virtual Reality (VR) and Augmented Reality (AR) applications are now broadly available to consumers, offering an immersive computing platform with both new opportunities and challenges. The ability to interact directly with immersive hardware is critical to ensuring that the web is well equipped to operate as a first-class citizen in this environment. The WebXR Gamepads module adds interfaces and behaviors to the WebXR Device API and the Gamepads API to allow for querying the state of buttons, triggers, thumbsticks, and touchpads available as input sources on many WebXR compatible devices. 
 
 </section>
 
-This specification module is an addition to the <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>.
+This module is an addition to the <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>.
 
 Terminology {#terminology}
 -----------
