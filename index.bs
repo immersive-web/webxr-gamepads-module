@@ -145,7 +145,7 @@ WebXR Device API Integration {#webxr-device-api-integration}
 ============
 As defined in the <a href="https://www.w3.org/TR/webxr/">WebXR Device API API</a>, an {{XRInputSource}} represents an <dfn>XR input source</dfn>, which is any input mechanism which allows the user to perform targeted actions in the same virtual space as the [=viewer=]. Example [=XR input source=]s include, but are not limited to, handheld controllers, optically tracked hands, and gaze-based input methods that operate on the [=viewer=]'s pose.
 
-This document outlines the behavior of an {{XRInputSource}} when it has button, trigger, thumbstick, or touchpad data to report. This is commonly a motion controller, but may also be headset with buttons, triggers, thumbsticks, or touchpads on the [=XRSession/XR device=].  Input mechanisms which are not explicitly associated with the [=XRSession/XR Device=], such as traditional gamepads, mice, or keyboards MUST NOT be considered [=XR input source=]s.
+This document outlines the behavior of an {{XRInputSource}} when it has button, trigger, thumbstick, or touchpad data to report. This is commonly a motion controller, but may also be headset with buttons, triggers, thumbsticks, or touchpads on the [=XRSession/XR device=].  As stated in the WebXR device API, input mechanisms which are not explicitly associated with the [=XRSession/XR Device=], such as traditional gamepads, MUST NOT be considered [=XR input source=]s.
 
 XRInputSource {#xrinputsource-interface}
 -------------
