@@ -50,17 +50,17 @@ The WebXR Device API also introduces a new standard controller layout indicated 
 
 | Button     | `xr-standard` Mapping    |
 | ---------- | -------------------------|
-| buttons[0] | Primary button/trigger   |
-| buttons[1] | Secondary button/trigger |
-| buttons[2] | Touchpad press           |
-| buttons[3] | Thumbstick press         |
+| buttons[0] | Primary trigger          |
+| buttons[1] | Primary squeeze          |
+| buttons[2] | Primary touchpad         |
+| buttons[3] | Primary thumbstick       |
 
 | Axis    | `xr-standard` Mapping |
 | ------- | ----------------------|
-| axes[0] | Touchpad X            |
-| axes[1] | Touchpad Y            |
-| axes[2] | Thumbstick X          |
-| axes[3] | Thumbstick Y          |
+| axes[0] | Primary touchpad X    |
+| axes[1] | Primary touchpad Y    |
+| axes[2] | Primary thumbstick X  |
+| axes[3] | Primary thumbstick Y  |
 
 Additional device-specific inputs may be exposed after these reserved indices, but devices that lack one of the canonical inputs must still preserve their place in the array.
 
@@ -80,7 +80,7 @@ When using an API that limits reading controller input to use of an action map, 
 | Button/Axis | Action name        | Sample binding              |
 |-------------|--------------------|-----------------------------|
 | button[0]   | "trigger"          | "[device]/trigger"          |
-| button[1]   | "squeeze"             | "[device]/squeeze"             |
+| button[1]   | "squeeze"          | "[device]/squeeze"          |
 | button[2]   | "touchpad-click"   | "[device]/touchpad/click"   |
 | button[3]   | "thumbstick-click" | "[device]/thumbstick/click" |
 | axis[0]     | "touchpad-x"       | "[device]/touchpad/x"       |
