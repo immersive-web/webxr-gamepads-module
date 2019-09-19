@@ -80,7 +80,7 @@ When using an API that limits reading controller input to use of an action map, 
 | Button/Axis | Action name        | Sample binding              |
 |-------------|--------------------|-----------------------------|
 | button[0]   | "trigger"          | "[device]/trigger"          |
-| button[1]   | "grip"             | "[device]/grip"             |
+| button[1]   | "squeeze"             | "[device]/squeeze"             |
 | button[2]   | "touchpad-click"   | "[device]/touchpad/click"   |
 | button[3]   | "thumbstick-click" | "[device]/thumbstick/click" |
 | axis[0]     | "touchpad-x"       | "[device]/touchpad/x"       |

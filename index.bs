@@ -224,7 +224,7 @@ In order to report a {{Gamepad/mapping}} of {{GamepadMappingType/"xr-standard"}}
     </tr>
     <tr>
       <td>buttons[1]</td>
-      <td>Secondary Button/Grip Trigger</td>
+      <td>Secondary Button/Squeeze Trigger</td>
       <td>No</td>
     </tr>
     <tr>
