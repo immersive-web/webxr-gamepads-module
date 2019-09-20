@@ -1683,19 +1683,19 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <tbody>
      <tr>
       <td>buttons[0]
-      <td>Primary Button/Trigger
+      <td>Primary button/trigger
       <td>Yes
      <tr>
       <td>buttons[1]
-      <td>Secondary Button/Grip Trigger
+      <td>Primary squeeze
       <td>No
      <tr>
       <td>buttons[2]
-      <td>Touchpad Press
+      <td>Primary touchpad
       <td>No
      <tr>
       <td>buttons[3]
-      <td>Thumbstick Press
+      <td>Primary thumbstick
       <td>No
    </table>
     <br> 
@@ -1708,19 +1708,19 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <tbody>
      <tr>
       <td>axes[0]
-      <td>Touchpad X
+      <td>Primary touchpad X
       <td>No
      <tr>
       <td>axes[1]
-      <td>Touchpad Y
+      <td>Primary touchpad Y
       <td>No
      <tr>
       <td>axes[2]
-      <td>Thumbstick X
+      <td>Primary thumbstick X
       <td>No
      <tr>
       <td>axes[3]
-      <td>Thumbstick Y
+      <td>Primary thumbstick Y
       <td>No
    </table>
    <p>Devices that lack one of the optional inputs listed in the tables above MUST preserve their place in the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-buttons" id="ref-for-dom-gamepad-buttons">buttons</a></code> or <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-axes" id="ref-for-dom-gamepad-axes①">axes</a></code> array, reporting a <a data-link-type="dfn" href="#placeholder-button" id="ref-for-placeholder-button">placeholder button</a> or <a data-link-type="dfn" href="#placeholder-axis" id="ref-for-placeholder-axis">placeholder axis</a>, respectively. A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="placeholder-button">placeholder button</dfn> MUST report <code>0</code> for <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepadbutton-value" id="ref-for-dom-gamepadbutton-value">value</a></code>, <code>false</code> for <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepadbutton-pressed" id="ref-for-dom-gamepadbutton-pressed">pressed</a></code>, and <code>false</code> for <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepadbutton-touched" id="ref-for-dom-gamepadbutton-touched①">touched</a></code>. A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="placeholder-axis">placeholder axis</dfn> MUST report <code>0</code>. <a data-link-type="dfn" href="#placeholder-button" id="ref-for-placeholder-button①">Placeholder buttons</a> and <a data-link-type="dfn" href="#placeholder-axis" id="ref-for-placeholder-axis①">axes</a> MUST be omitted if they are the last element in the array or all following elements are also <a data-link-type="dfn" href="#placeholder-button" id="ref-for-placeholder-button②">placeholder buttons</a> or <a data-link-type="dfn" href="#placeholder-axis" id="ref-for-placeholder-axis②">axes</a>.</p>
