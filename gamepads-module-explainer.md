@@ -50,7 +50,7 @@ The WebXR Device API also introduces a new standard controller layout indicated 
 
 | Button     | `xr-standard` Mapping    |
 | ---------- | -------------------------|
-| buttons[0] | Primary trigger          |
+| buttons[0] | Primary trigger/button   |
 | buttons[1] | Primary squeeze          |
 | buttons[2] | Primary touchpad         |
 | buttons[3] | Primary thumbstick       |
