@@ -219,22 +219,22 @@ In order to report a {{Gamepad/mapping}} of {{GamepadMappingType/"xr-standard"}}
   <tbody>
     <tr>
       <td>buttons[0]</td>
-      <td>Primary Button/Trigger</td>
+      <td>Primary button/trigger</td>
       <td>Yes</td>
     </tr>
     <tr>
       <td>buttons[1]</td>
-      <td>Secondary Button/Grip Trigger</td>
+      <td>Primary squeeze</td>
       <td>No</td>
     </tr>
     <tr>
       <td>buttons[2]</td>
-      <td>Touchpad Press</td>
+      <td>Primary touchpad</td>
       <td>No</td>
     </tr>
     <tr>
       <td>buttons[3]</td>
-      <td>Thumbstick Press</td>
+      <td>Primary thumbstick</td>
       <td>No</td>
     </tr>
   </tbody>
@@ -251,22 +251,22 @@ In order to report a {{Gamepad/mapping}} of {{GamepadMappingType/"xr-standard"}}
   <tbody>
     <tr>
       <td>axes[0]</td>
-      <td>Touchpad X</td>
+      <td>Primary touchpad X</td>
       <td>No</td>
     </tr>
     <tr>
       <td>axes[1]</td>
-      <td>Touchpad Y</td>
+      <td>Primary touchpad Y</td>
       <td>No</td>
     </tr>
     <tr>
       <td>axes[2]</td>
-      <td>Thumbstick X</td>
+      <td>Primary thumbstick X</td>
       <td>No</td>
     </tr>
     <tr>
       <td>axes[3]</td>
-      <td>Thumbstick Y</td>
+      <td>Primary thumbstick Y</td>
       <td>No</td>
     </tr>
   </tbody>
