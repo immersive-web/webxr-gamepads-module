@@ -3,7 +3,7 @@ Shortname: webxr-gamepads-module
 Title: WebXR Gamepads Module - Level 1
 Group: immersivewebwg
 Status: FPWD
-Date: 2019-09-XX
+Date: 2019-10-07
 TR: https://www.w3.org/TR/webxr-gamepads-module/
 ED: https://immersive-web.github.io/webxr-gamepads-module/
 Repository: immersive-web/webxr-gamepads-module
