@@ -2,8 +2,9 @@
 Shortname: webxr-gamepads-module
 Title: WebXR Gamepads Module - Level 1
 Group: immersivewebwg
-Status: ED
-TR: https://www.w3.org/TR/webxr-gamepads-module/
+Status: FPWD
+Date: 2019-10-07
+TR: https://www.w3.org/TR/webxr-gamepads-module-1/
 ED: https://immersive-web.github.io/webxr-gamepads-module/
 Repository: immersive-web/webxr-gamepads-module
 Level: 1
@@ -17,6 +18,8 @@ Editor: Brandon Jones 87824, Google http://google.com/, bajones@google.com
 Editor: Nell Waliczek 93109, Amazon [Microsoft until 2018] https://amazon.com/, nhw@amazon.com
 
 Abstract: This specification module describes support for accessing button, trigger, thumbstick, and touchpad data associated with virtual reality (VR) and augmented reality (AR) devices on the Web.
+
+Status Text: This WebXR Gamepads Module is designed as a module to be implemented in addition to <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>, and is originally included in WebXR Device API which was divided into core and modules. 
 </pre>
 
 <pre class="link-defaults">

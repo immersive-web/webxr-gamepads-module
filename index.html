@@ -1212,9 +1212,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version e86d5b1b47a216fa66165c234892adc259212183" name="generator">
-  <link href="https://www.w3.org/TR/webxr-gamepads-module/" rel="canonical">
+  <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD" rel="stylesheet" type="text/css">
+  <meta content="Bikeshed version b76a1f3caa65320a39ee72dbf2680ea887ace619" name="generator">
+  <link href="https://www.w3.org/TR/webxr-gamepads-module-1/" rel="canonical">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
 <style>
@@ -1517,13 +1517,15 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Gamepads Module - Level 1</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-09-25">25 September 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">W3C First Public Working Draft, <time class="dt-updated" datetime="2019-10-07">7 October 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://immersive-web.github.io/webxr-gamepads-module/">https://immersive-web.github.io/webxr-gamepads-module/</a>
+     <dd><a class="u-url" href="https://www.w3.org/TR/2019/WD-webxr-gamepads-module-1-20191007/">https://www.w3.org/TR/2019/WD-webxr-gamepads-module-1-20191007/</a>
      <dt>Latest published version:
-     <dd><a href="https://www.w3.org/TR/webxr-gamepads-module/">https://www.w3.org/TR/webxr-gamepads-module/</a>
+     <dd><a href="https://www.w3.org/TR/webxr-gamepads-module-1/">https://www.w3.org/TR/webxr-gamepads-module-1/</a>
+     <dt>Editor's Draft:
+     <dd><a href="https://immersive-web.github.io/webxr-gamepads-module/">https://immersive-web.github.io/webxr-gamepads-module/</a>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/immersive-web/webxr-gamepads-module/issues/">GitHub</a>
      <dt class="editor">Editors:
@@ -1547,24 +1549,20 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> <em>This section describes the status of this document at the time of its publication. Other
-    documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this
-    technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical
-    reports index</a> at http://www.w3.org/TR/.</em> </p>
-   <p> This document was published by the <a href="https://www.w3.org/immersive-web/">Immersive Web Working Group</a> as an Editors' Draft. This document is intended to become a W3C Recommendation.
-
-    Feedback and comments on this specification are welcome. Please use <a href="https://github.com/immersive-web/webxr-gamepads-module/issues">Github issues</a>.
-    Discussions may also be found in the <a href="http://lists.w3.org/Archives/Public/public-immersive-web/">public-immersive-web@w3.org archives</a>. </p>
-   <p> Publication as an Editors' Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may
-    be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite
-    this document as other than work in progress. </p>
-   <p> This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy/"> <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/2004/01/pp-impl/109735/status" rel="disclosure">public list of any
-    patent disclosures</a> made in connection with the deliverables of the group; that page also
-    includes instructions for disclosing a patent. An individual who has actual knowledge of a
-    patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential
-    Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. </p>
+   <p> <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em> </p>
+   <p> The Immersive Web Working Group maintains <a href="https://github.com/immersive-web/webxr-gamepads-module/issues">a list of all bug
+        reports that the group has not yet addressed</a>. This draft highlights some of the pending issues that are still to be discussed in the working group. No decision has been taken on the outcome of these issues including whether they are valid.
+            Pull requests with proposed specification text for outstanding issues are strongly encouraged. </p>
+   <p> This document was published by the <a href="https://www.w3.org/immersive-web/">Immersive Web Working Group</a> as a Working Draft. This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation. </p>
+   <p> This document is a <strong>First Public Working Draft</strong>. </p>
+   <p> Publication as a First Public Working Draft does not imply endorsement by the W3C Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress. </p>
+   <p> This document was produced by a group operating under the <a class="css" data-link-type="property" href="https://www.w3.org/Consortium/Patent-Policy/" id="sotd_patent">W3C Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/2004/01/pp-impl/109735/status" rel="disclosure">public list of any patent
+              disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential
+            Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section
+            6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. </p>
    <p> This document is governed by the <a href="https://www.w3.org/2019/Process-20190301/" id="w3c_process_revision">1 March 2019 W3C Process Document</a>. </p>
    <p></p>
+   <p>This WebXR Gamepads Module is designed as a module to be implemented in addition to <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>, and is originally included in WebXR Device API which was divided into core and modules.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
@@ -1672,7 +1670,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <a class="idl-code" data-link-type="enum-value" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard"><c- s>"xr-standard"</c-></a>,
 };
 </pre>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="GamepadMappingType" data-dfn-type="enum-value" data-export id="dom-gamepadmappingtype-xr-standard"><code>xr-standard</code></dfn> mapping indicates that the layout of the buttons and axes of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①③">gamepad</a></code> corresponds as closely as possible to the tables below.</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="GamepadMappingType" data-dfn-type="enum-value" data-export data-lt="&quot;xr-standard&quot;|xr-standard" id="dom-gamepadmappingtype-xr-standard"><code>xr-standard</code></dfn> mapping indicates that the layout of the buttons and axes of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①③">gamepad</a></code> corresponds as closely as possible to the tables below.</p>
    <p>In order to report a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping">mapping</a></code> of <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard①">"xr-standard"</a></code> the device MUST report a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code> of <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer">"tracked-pointer"</a></code> and MUST have a non-<code>null</code> <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code>. It MUST have at least one primary button, often a trigger, separate from any touchpads or thumbsticks. If a device does not meet the requirements for the <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard②">"xr-standard"</a></code> mapping it may still expose a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①④">gamepad</a></code> with a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping①">mapping</a></code> of <code>""</code> (empty string). The <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard③">"xr-standard"</a></code> mapping MUST only be used by <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑧">Gamepad</a></code> instances reported by an <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#xrinputsource-interface" id="ref-for-xrinputsource-interface①②">XRInputSource</a></code>.</p>
    <table class="tg">
     <thead>
@@ -1757,6 +1755,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <li><a href="#dom-gamepadmappingtype-standard">"standard"</a><span>, in §3.3</span>
    <li><a href="#xr-input-source">XR input source</a><span>, in §2</span>
    <li><a href="#dom-gamepadmappingtype-xr-standard">xr-standard</a><span>, in §3.3</span>
+   <li><a href="#dom-gamepadmappingtype-xr-standard">"xr-standard"</a><span>, in §3.3</span>
   </ul>
   <aside class="dfn-panel" data-for="term-for-dom-gamepad">
    <a href="https://w3c.github.io/gamepad/#dom-gamepad">https://w3c.github.io/gamepad/#dom-gamepad</a><b>Referenced in:</b>
@@ -1969,7 +1968,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-gamepad">[GAMEPAD]
-   <dd>Brandon Jones; Scott Graham; Theodore Mielczarek. <a href="https://www.w3.org/TR/gamepad/">Gamepad</a>. 23 September 2019. WD. URL: <a href="https://www.w3.org/TR/gamepad/">https://www.w3.org/TR/gamepad/</a>
+   <dd>James Hollyer; et al. <a href="https://www.w3.org/TR/gamepad/">Gamepad</a>. 3 October 2019. WD. URL: <a href="https://www.w3.org/TR/gamepad/">https://www.w3.org/TR/gamepad/</a>
    <dt id="biblio-webidl">[WebIDL]
    <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
