@@ -19,7 +19,7 @@ Editor: Nell Waliczek 93109, Amazon [Microsoft until 2018] https://amazon.com/, 
 
 Abstract: This specification module describes support for accessing button, trigger, thumbstick, and touchpad data associated with virtual reality (VR) and augmented reality (AR) devices on the Web.
 
-Status Text: This WebXR Gamepads Module is designed as a module to be implemented in addition to <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>, and is originally included in WebXR Device API which was divided into core and modules. 
+Status Text: This WebXR Gamepads Module is designed as a module to be implemented in addition to <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>, and was originally included in WebXR Device API which was divided into core and modules. 
 </pre>
 
 <pre class="link-defaults">
