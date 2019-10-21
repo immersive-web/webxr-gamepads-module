@@ -164,7 +164,7 @@ The <dfn attribute for="XRInputSource">gamepad</dfn> attribute is a {{Gamepad}} 
 
 The {{XRInputSource/gamepad}} object is "live", and any internal state is to be updated in-place every frame. This means that whenever an {{XRFrame}} is created, all {{XRInputSource/gamepad}}s attached to the {{XRFrame/session}} should have their state updated to whatever the corresponding gamepad state was at the time of creation of the pose and input state contained within the {{XRFrame}}. This should happen for {{XRFrame}}s created whilst processing the [=primary action=], not just [=XR animation frames=].
 
-Note: This means that it doesn't work to save a reference to an {{XRInputSource}}'s {{gamepad}} on one frame and compare it to the same {{XRInputSource}}'s {{gamepad}} from a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should copy the state in question.
+Note: This means that it doesn't work to save a reference to an {{XRInputSource}}'s {{gamepad}} on one frame and compare it to the same {{XRInputSource}}'s {{gamepad}} from a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should cache the state in question.
 
 XRSession {#xrsession-interface}
 ------------
