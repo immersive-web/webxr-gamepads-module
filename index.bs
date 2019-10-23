@@ -211,7 +211,7 @@ This module extends the {{GamepadMappingType}} to describe the mapping of common
 
 The <dfn enum-value for="GamepadMappingType">xr-standard</dfn> mapping indicates that the layout of the buttons and axes of the {{XRInputSource/gamepad}} corresponds as closely as possible to the tables below.
 
-In order to report a {{Gamepad/mapping}} of {{GamepadMappingType/"xr-standard"}} the device MUST report a {{XRInputSource/targetRayMode}} of {{XRTargetRayMode/"tracked-pointer"}} and MUST have a non-<code>null</code> {{XRInputSource/gripSpace}}. It MUST have at least one <dfn>primary button</dfn>, often a trigger, separate from any touchpads or thumbsticks. The [=primary button=] MUST trigger the [=primary action=] for the input source. The device MAY have a <dfn>primary squeeze button</dfn>, which MUST trigger the [=primary squeeze action=] for the input source. If a device does not meet the requirements for the {{GamepadMappingType/"xr-standard"}} mapping it may still expose a {{XRInputSource/gamepad}} with a {{Gamepad/mapping}} of <code>""</code> (empty string). The {{GamepadMappingType/"xr-standard"}} mapping MUST only be used by {{Gamepad}} instances reported by an {{XRInputSource}}.
+In order to report a {{Gamepad/mapping}} of {{GamepadMappingType/"xr-standard"}} the device MUST report a {{XRInputSource/targetRayMode}} of {{XRTargetRayMode/"tracked-pointer"}} and MUST have a non-<code>null</code> {{XRInputSource/gripSpace}}. It MUST have at least one <dfn>primary trigger</dfn>, separate from any touchpads or thumbsticks. The [=primary trigger=] MUST trigger the [=primary action=] for the input source. The device MAY have a <dfn>primary squeeze button</dfn>, which MUST trigger the [=primary squeeze action=] for the input source. If a device does not meet the requirements for the {{GamepadMappingType/"xr-standard"}} mapping it may still expose a {{XRInputSource/gamepad}} with a {{Gamepad/mapping}} of <code>""</code> (empty string). The {{GamepadMappingType/"xr-standard"}} mapping MUST only be used by {{Gamepad}} instances reported by an {{XRInputSource}}.
 
 <table class="tg">
   <thead>
@@ -224,7 +224,7 @@ In order to report a {{Gamepad/mapping}} of {{GamepadMappingType/"xr-standard"}}
   <tbody>
     <tr>
       <td>buttons[0]</td>
-      <td>[=primary button|Primary button/trigger=]</td>
+      <td>[=Primary trigger=]</td>
       <td>Yes</td>
     </tr>
     <tr>
