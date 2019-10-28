@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version 86a39676f08870ba1210b97fe65ff62bd4e723c9" name="generator">
+  <meta content="Bikeshed version 0e7769cca82774609b9dc8700c9a84ef436a1a12" name="generator">
   <link href="https://www.w3.org/TR/webxr-gamepads-module-1/" rel="canonical">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
@@ -1517,7 +1517,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Gamepads Module - Level 1</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-10-14">14 October 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-10-28">28 October 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1676,7 +1676,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 };
 </pre>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="GamepadMappingType" data-dfn-type="enum-value" data-export data-lt="&quot;xr-standard&quot;|xr-standard" id="dom-gamepadmappingtype-xr-standard"><code>xr-standard</code></dfn> mapping indicates that the layout of the buttons and axes of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①③">gamepad</a></code> corresponds as closely as possible to the tables below.</p>
-   <p>In order to report a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping">mapping</a></code> of <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard①">"xr-standard"</a></code> the device MUST report a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code> of <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer">"tracked-pointer"</a></code> and MUST have a non-<code>null</code> <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code>. It MUST have at least one primary button, often a trigger, separate from any touchpads or thumbsticks. If a device does not meet the requirements for the <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard②">"xr-standard"</a></code> mapping it may still expose a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①④">gamepad</a></code> with a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping①">mapping</a></code> of <code>""</code> (empty string). The <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard③">"xr-standard"</a></code> mapping MUST only be used by <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑧">Gamepad</a></code> instances reported by an <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#xrinputsource-interface" id="ref-for-xrinputsource-interface①②">XRInputSource</a></code>.</p>
+   <p>In order to report a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping">mapping</a></code> of <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard①">"xr-standard"</a></code> the device MUST report a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code> of <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer">"tracked-pointer"</a></code> and MUST have a non-<code>null</code> <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code>. It MUST have at least one <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-trigger">primary trigger</dfn>, separate from any touchpads or thumbsticks. The <a data-link-type="dfn" href="#primary-trigger" id="ref-for-primary-trigger">primary trigger</a> MUST trigger the <a data-link-type="dfn" href="https://www.w3.org/TR/webxr/#primary-action" id="ref-for-primary-action">primary action</a> for the input source. The device MAY have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-squeeze-button">primary squeeze button</dfn>, which, if present, MUST trigger the <a data-link-type="dfn" href="https://www.w3.org/TR/webxr/#primary-squeeze-action" id="ref-for-primary-squeeze-action">primary squeeze action</a> for the input source. If a device does not meet the requirements for the <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard②">"xr-standard"</a></code> mapping it may still expose a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①④">gamepad</a></code> with a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping①">mapping</a></code> of <code>""</code> (empty string). The <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard③">"xr-standard"</a></code> mapping MUST only be used by <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑧">Gamepad</a></code> instances reported by an <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webxr/#xrinputsource-interface" id="ref-for-xrinputsource-interface①②">XRInputSource</a></code>.</p>
    <table class="tg">
     <thead>
      <tr>
@@ -1686,11 +1686,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <tbody>
      <tr>
       <td>buttons[0]
-      <td>Primary button/trigger
+      <td><a data-link-type="dfn" href="#primary-trigger" id="ref-for-primary-trigger①">Primary trigger</a>
       <td>Yes
      <tr>
       <td>buttons[1]
-      <td>Primary squeeze
+      <td><a data-link-type="dfn" href="#primary-squeeze-button" id="ref-for-primary-squeeze-button">Primary squeeze button</a>
       <td>No
      <tr>
       <td>buttons[2]
@@ -1757,6 +1757,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <li><a href="#enumdef-gamepadmappingtype">GamepadMappingType</a><span>, in §3.3</span>
    <li><a href="#placeholder-axis">placeholder axis</a><span>, in §3.3</span>
    <li><a href="#placeholder-button">placeholder button</a><span>, in §3.3</span>
+   <li><a href="#primary-squeeze-button">primary squeeze button</a><span>, in §3.3</span>
+   <li><a href="#primary-trigger">primary trigger</a><span>, in §3.3</span>
    <li><a href="#dom-gamepadmappingtype-standard">"standard"</a><span>, in §3.3</span>
    <li><a href="#xr-input-source">XR input source</a><span>, in §2</span>
    <li><a href="#dom-gamepadmappingtype-xr-standard">xr-standard</a><span>, in §3.3</span>
@@ -1893,6 +1895,18 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li><a href="#ref-for-list-of-active-xr-input-sources">3.2. Gamepad</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-primary-action">
+   <a href="https://www.w3.org/TR/webxr/#primary-action">https://www.w3.org/TR/webxr/#primary-action</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-primary-action">3.3. "xr-standard" Gamepad Mapping</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-primary-squeeze-action">
+   <a href="https://www.w3.org/TR/webxr/#primary-squeeze-action">https://www.w3.org/TR/webxr/#primary-squeeze-action</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-primary-squeeze-action">3.3. "xr-standard" Gamepad Mapping</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-on-input-source-change">
    <a href="https://www.w3.org/TR/webxr/#on-input-source-change">https://www.w3.org/TR/webxr/#on-input-source-change</a><b>Referenced in:</b>
    <ul>
@@ -1961,6 +1975,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li><span class="dfn-paneled" id="term-for-dom-xrinputsource-gripspace" style="color:initial">gripSpace</span>
      <li><span class="dfn-paneled" id="term-for-dom-xrsession-inputsources" style="color:initial">inputSources</span>
      <li><span class="dfn-paneled" id="term-for-list-of-active-xr-input-sources" style="color:initial">list of active xr input sources</span>
+     <li><span class="dfn-paneled" id="term-for-primary-action" style="color:initial">primary action</span>
+     <li><span class="dfn-paneled" id="term-for-primary-squeeze-action" style="color:initial">primary squeeze action</span>
      <li><span class="dfn-paneled" id="term-for-on-input-source-change" style="color:initial">responding to input source attribute changes</span>
      <li><span class="dfn-paneled" id="term-for-sensitive-information" style="color:initial">sensitive information</span>
      <li><span class="dfn-paneled" id="term-for-dom-xrinputsource-targetraymode" style="color:initial">targetRayMode</span>
@@ -1973,7 +1989,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-gamepad">[GAMEPAD]
-   <dd>James Hollyer; et al. <a href="https://www.w3.org/TR/gamepad/">Gamepad</a>. 3 October 2019. WD. URL: <a href="https://www.w3.org/TR/gamepad/">https://www.w3.org/TR/gamepad/</a>
+   <dd>James Hollyer; et al. <a href="https://www.w3.org/TR/gamepad/">Gamepad</a>. 10 October 2019. WD. URL: <a href="https://www.w3.org/TR/gamepad/">https://www.w3.org/TR/gamepad/</a>
    <dt id="biblio-webidl">[WebIDL]
    <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
@@ -2018,6 +2034,18 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <b><a href="#dom-gamepadmappingtype-xr-standard">#dom-gamepadmappingtype-xr-standard</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-gamepadmappingtype-xr-standard">3.3. "xr-standard" Gamepad Mapping</a> <a href="#ref-for-dom-gamepadmappingtype-xr-standard①">(2)</a> <a href="#ref-for-dom-gamepadmappingtype-xr-standard②">(3)</a> <a href="#ref-for-dom-gamepadmappingtype-xr-standard③">(4)</a> <a href="#ref-for-dom-gamepadmappingtype-xr-standard④">(5)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="primary-trigger">
+   <b><a href="#primary-trigger">#primary-trigger</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-primary-trigger">3.3. "xr-standard" Gamepad Mapping</a> <a href="#ref-for-primary-trigger①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="primary-squeeze-button">
+   <b><a href="#primary-squeeze-button">#primary-squeeze-button</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-primary-squeeze-button">3.3. "xr-standard" Gamepad Mapping</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="placeholder-button">
