@@ -32,11 +32,10 @@ spec:webxr-1;
     type: dfn; text: xr device; for: XRSession
     type: dfn; text: sensitive information
     type: dfn; text: primary action
+    type: dfn; text: primary squeeze action
 </pre>
 
 <pre class="anchors">
-spec: WebXR Device API - Level 1; urlPrefix: https://www.w3.org/TR/webxr/#
-    type: dfn; text: primary squeeze action; url: primary-squeeze-action
 spec: Gamepad; urlPrefix: https://w3c.github.io/gamepad/#
     type: interface; text: Gamepad; url: dom-gamepad
     type: interface; text: GamepadButton; url: dom-gamepadbutton

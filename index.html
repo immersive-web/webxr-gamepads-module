@@ -1517,7 +1517,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Gamepads Module - Level 1</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-10-28">28 October 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-10-29">29 October 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1676,7 +1676,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 };
 </pre>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="GamepadMappingType" data-dfn-type="enum-value" data-export data-lt="&quot;xr-standard&quot;|xr-standard" id="dom-gamepadmappingtype-xr-standard"><code>xr-standard</code></dfn> mapping indicates that the layout of the buttons and axes of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①③">gamepad</a></code> corresponds as closely as possible to the tables below.</p>
-   <p>In order to report a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping">mapping</a></code> of <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard①">"xr-standard"</a></code> the device MUST report a <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code> of <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer">"tracked-pointer"</a></code> and MUST have a non-<code>null</code> <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code>. It MUST have at least one <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-trigger">primary trigger</dfn>, separate from any touchpads or thumbsticks. The <a data-link-type="dfn" href="#primary-trigger" id="ref-for-primary-trigger">primary trigger</a> MUST trigger the <a data-link-type="dfn" href="https://immersive-web.github.io/webxr/#primary-action" id="ref-for-primary-action">primary action</a> for the input source. The device MAY have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-squeeze-button">primary squeeze button</dfn>, which, if present, MUST trigger the <a data-link-type="dfn" href="https://www.w3.org/TR/webxr/#primary-squeeze-action" id="ref-for-primary-squeeze-action">primary squeeze action</a> for the input source. If a device does not meet the requirements for the <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard②">"xr-standard"</a></code> mapping it may still expose a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①④">gamepad</a></code> with a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping①">mapping</a></code> of <code>""</code> (empty string). The <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard③">"xr-standard"</a></code> mapping MUST only be used by <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑧">Gamepad</a></code> instances reported by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①②">XRInputSource</a></code>.</p>
+   <p>In order to report a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping">mapping</a></code> of <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard①">"xr-standard"</a></code> the device MUST report a <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code> of <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer">"tracked-pointer"</a></code> and MUST have a non-<code>null</code> <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code>. It MUST have at least one <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-trigger">primary trigger</dfn>, separate from any touchpads or thumbsticks. The <a data-link-type="dfn" href="#primary-trigger" id="ref-for-primary-trigger">primary trigger</a> MUST trigger the <a data-link-type="dfn" href="https://immersive-web.github.io/webxr/#primary-action" id="ref-for-primary-action">primary action</a> for the input source. The device MAY have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-squeeze-button">primary squeeze button</dfn>, which, if present, MUST trigger the <a data-link-type="dfn" href="https://immersive-web.github.io/webxr/#primary-squeeze-action" id="ref-for-primary-squeeze-action">primary squeeze action</a> for the input source. If a device does not meet the requirements for the <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard②">"xr-standard"</a></code> mapping it may still expose a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①④">gamepad</a></code> with a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping①">mapping</a></code> of <code>""</code> (empty string). The <code class="idl"><a data-link-type="idl" href="#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard③">"xr-standard"</a></code> mapping MUST only be used by <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑧">Gamepad</a></code> instances reported by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①②">XRInputSource</a></code>.</p>
    <table class="tg">
     <thead>
      <tr>
@@ -1907,6 +1907,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li><a href="#ref-for-primary-action">3.3. "xr-standard" Gamepad Mapping</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-primary-squeeze-action">
+   <a href="https://immersive-web.github.io/webxr/#primary-squeeze-action">https://immersive-web.github.io/webxr/#primary-squeeze-action</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-primary-squeeze-action">3.3. "xr-standard" Gamepad Mapping</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-sensitive-information">
    <a href="https://immersive-web.github.io/webxr/#sensitive-information">https://immersive-web.github.io/webxr/#sensitive-information</a><b>Referenced in:</b>
    <ul>
@@ -1929,12 +1935,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <a href="https://immersive-web.github.io/webxr/#xrsession-xr-device">https://immersive-web.github.io/webxr/#xrsession-xr-device</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-xrsession-xr-device">2. WebXR Device API Integration</a> <a href="#ref-for-xrsession-xr-device①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-primary-squeeze-action">
-   <a href="https://www.w3.org/TR/webxr/#primary-squeeze-action">https://www.w3.org/TR/webxr/#primary-squeeze-action</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-primary-squeeze-action">3.3. "xr-standard" Gamepad Mapping</a>
    </ul>
   </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
@@ -1971,15 +1971,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <li><span class="dfn-paneled" id="term-for-dom-xrsession-inputsources" style="color:initial">inputSources</span>
      <li><span class="dfn-paneled" id="term-for-list-of-active-xr-input-sources" style="color:initial">list of active xr input sources</span>
      <li><span class="dfn-paneled" id="term-for-primary-action" style="color:initial">primary action</span>
+     <li><span class="dfn-paneled" id="term-for-primary-squeeze-action" style="color:initial">primary squeeze action</span>
      <li><span class="dfn-paneled" id="term-for-sensitive-information" style="color:initial">sensitive information</span>
      <li><span class="dfn-paneled" id="term-for-dom-xrinputsource-targetraymode" style="color:initial">targetRayMode</span>
      <li><span class="dfn-paneled" id="term-for-viewer" style="color:initial">viewer</span>
      <li><span class="dfn-paneled" id="term-for-xrsession-xr-device" style="color:initial">xr device</span>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[webxr device api - level 1]</a> defines the following terms:
-    <ul>
-     <li><span class="dfn-paneled" id="term-for-primary-squeeze-action" style="color:initial">primary squeeze action</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
