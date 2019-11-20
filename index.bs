@@ -177,7 +177,7 @@ The [=XRFrame/apply frame updates=] steps are modified to include [=apply gamepa
 To <dfn for=XRFrame>apply gamepad frame updates</dfn> for an {{XRFrame}} |frame|, the user agent MUST run the following steps:
 
  1. For each {{XRInputSource}} with a {{XRInputSource/gamepad}} |gamepad| associated with |frame|'s {{XRFrame/session}}, perform the following steps:
-    1. Update |gamepad| to reflect the gamepad state at |frame|'s [=XRFrame/time=].
+    1. Update |gamepad| to reflect the gamepad data at |frame|'s [=XRFrame/time=].
 
 </div>
 
