@@ -32,13 +32,14 @@ spec:webxr-1;
     type: dfn; text: xr device; for: XRSession
     type: dfn; text: sensitive information
     type: dfn; text: primary action
-    type: dfn; text: primary squeeze action
     type: dfn; text: xr animation frame
-    type: dfn; text: apply frame updates; for: XRFrame
-    type: dfn; text: time; for: XRFrame
+    type: dfn; text: primary squeeze action
 </pre>
 
 <pre class="anchors">
+spec: WebXR Device API - Level 1; urlPrefix: https://www.w3.org/TR/webxr/#
+    type: dfn; text: list of frame updates; for: XRSession; url: xrsession-list-of-frame-updates
+    type: dfn; text: time; for: XRFrame; url: xrframe-time
 spec: Gamepad; urlPrefix: https://w3c.github.io/gamepad/#
     type: interface; text: Gamepad; url: dom-gamepad
     type: interface; text: GamepadButton; url: dom-gamepadbutton
@@ -169,10 +170,7 @@ XRSession {#xrsession-interface}
 
 {{XRInputSource}}s are reported in the {{XRSession/inputSources}} array as they are connected and disconnected. When the presence of a {{XRInputSource/gamepad}} changes for any entry in the {{XRSession/inputSources}} array, the user agent MUST invoke the WebXR Device API's algorithm for [=change input source|responding to input source attribute changes=].
 
-XRFrame {#xrframe-interface}
-------------
-
-The [=XRFrame/apply frame updates=] steps are modified to include [=apply gamepad frame updates=].
+The [=XRSession/list of frame updates=] is updated to include [=apply gamepad frame updates=].
 
 To <dfn for=XRFrame>apply gamepad frame updates</dfn> for an {{XRFrame}} |frame|, the user agent MUST run the following steps:
 
