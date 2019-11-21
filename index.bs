@@ -32,10 +32,14 @@ spec:webxr-1;
     type: dfn; text: xr device; for: XRSession
     type: dfn; text: sensitive information
     type: dfn; text: primary action
+    type: dfn; text: xr animation frame
     type: dfn; text: primary squeeze action
 </pre>
 
 <pre class="anchors">
+spec: WebXR Device API - Level 1; urlPrefix: https://www.w3.org/TR/webxr/#
+    type: dfn; text: list of frame updates; for: XRSession; url: xrsession-list-of-frame-updates
+    type: dfn; text: time; for: XRFrame; url: xrframe-time
 spec: Gamepad; urlPrefix: https://w3c.github.io/gamepad/#
     type: interface; text: Gamepad; url: dom-gamepad
     type: interface; text: GamepadButton; url: dom-gamepadbutton
@@ -161,12 +165,22 @@ The <dfn attribute for="XRInputSource">gamepad</dfn> attribute is a {{Gamepad}} 
  - More than one button
  - One or more axes
 
-Note: {{XRInputSource}}s in an {{XRSession}}'s {{XRSession/inputSources}} array are "live". As such values within them, such as the {{gamepad}} button and axis state, are updated in-place. This means that it doesn't work to save a reference to an {{XRInputSource}}'s {{gamepad}} on one frame and compare it to the same {{XRInputSource}}'s {{gamepad}} from a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should copy the state in question.
-
 XRSession {#xrsession-interface}
 ------------
 
 {{XRInputSource}}s are reported in the {{XRSession/inputSources}} array as they are connected and disconnected. When the presence of a {{XRInputSource/gamepad}} changes for any entry in the {{XRSession/inputSources}} array, the user agent MUST invoke the WebXR Device API's algorithm for [=change input source|responding to input source attribute changes=].
+
+The [=XRSession/list of frame updates=] is updated to include [=apply gamepad frame updates=].
+
+To <dfn for=XRFrame>apply gamepad frame updates</dfn> for an {{XRFrame}} |frame|, the user agent MUST run the following steps:
+
+ 1. For each {{XRInputSource}} with a {{XRInputSource/gamepad}} |gamepad| associated with |frame|'s {{XRFrame/session}}, perform the following steps:
+    1. Update |gamepad| to reflect the gamepad data at |frame|'s [=XRFrame/time=].
+
+</div>
+
+NOTE: This means that the {{XRInputSource/gamepad}} object is "live", and any internal state is to be updated in-place every frame. Furthermore, it doesn't work to save a reference to an {{XRInputSource}}'s {{gamepad}} on one frame and compare it to the same {{XRInputSource}}'s {{gamepad}} from a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should cache the state in question.
+
 
 Gamepad API Integration {#gamepad-api-integration}
 ========================
