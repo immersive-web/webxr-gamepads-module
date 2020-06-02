@@ -80,6 +80,6 @@ Per the [`LICENSE.md`](LICENSE.md) file:
 [17]: https://w3.org/immersive-web
 [18]: https://immersive-web.github.io/homepage/code-of-conduct.html
 [19]: https://github.com/immersive-web/proposals
-[20]: https://lists.w3.org/Archives/Public/public-immersive-web/
+[20]: https://lists.w3.org/Archives/Public/public-immersive-web-wg/
 [21]: https://immersive-web.github.io/webxr-gamepads-module
 [22]: https://github.com/immersive-web/webxr-gamepads-module/issues
