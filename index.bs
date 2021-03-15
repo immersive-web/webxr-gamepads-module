@@ -202,7 +202,7 @@ The following {{Gamepad}} attributes MUST exhibit the following behavioral restr
   - {{XRInputSource/gamepad}}'s {{Gamepad/connected}} attribute MUST be <code>true</code> until the {{XRInputSource}} is removed from the [=list of active XR input sources=] or the {{XRSession}} is ended.
   - If an axis reported by the {{XRInputSource/gamepad}}'s {{Gamepad/axes}} array represents an axis of a touchpad, the value MUST be <code>0</code> when the associated {{GamepadButton}}'s {{GamepadButton/touched}} is <code>false</code>.
 
-"xr-standard" Gamepad Mapping {#xr-standard-gamepad-mapping}
+<dfn export id="xr-standard-gamepad-mapping">"xr-standard" Gamepad Mapping</dfn> {#xr-standard-heading}
 -----------------------------
 
 The {{GamepadMappingType/"xr-standard"}} mapping is defined in the <a href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype">Gamepad API</a> and reserved for use by this spec. It indicates that the layout of the buttons and axes of the {{XRInputSource/gamepad}} corresponds as closely as possible to the tables below.
