@@ -4,7 +4,7 @@
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <title>WebXR Gamepads Module - Level 1</title>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version 5c7bc9381, updated Wed May 12 18:18:08 2021 -0700" name="generator">
+  <meta content="Bikeshed version 59d067506, updated Fri Jul 23 15:43:29 2021 -0700" name="generator">
   <link href="https://www.w3.org/TR/webxr-gamepads-module-1/" rel="canonical">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
@@ -622,7 +622,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Gamepads Module - Level 1</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-05-17">17 May 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-07-28">28 July 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -633,8 +633,10 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd><a href="https://www.w3.org/TR/2019/WD-webxr-gamepads-module-1-20191010/" rel="prev">https://www.w3.org/TR/2019/WD-webxr-gamepads-module-1-20191010/</a>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/immersive-web/webxr-gamepads-module/issues/">GitHub</a>
-     <dt class="editor">Editor:
+     <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard" data-editor-id="87824"><a class="p-name fn u-email email" href="mailto:bajones@google.com">Brandon Jones</a> (<a class="p-org org" href="http://google.com/">Google</a>)
+     <dd class="editor p-author h-card vcard" data-editor-id="109489"><a class="p-name fn u-email email" href="mailto:manishearth@google.com">Manish Goregaokar</a> (<span class="p-org org">Google [Mozilla until 2020]</span>)
+     <dd class="editor p-author h-card vcard" data-editor-id="106988"><a class="p-name fn u-email email" href="mailto:cabanier@fb.com">Rik Cabanier</a> (<a class="p-org org" href="http://oculus.com">Facebook</a>)
      <dt class="editor">Former Editor:
      <dd class="editor p-author h-card vcard" data-editor-id="93109"><a class="p-name fn u-email email" href="mailto:nhw@amazon.com">Nell Waliczek</a> (<a class="p-org org" href="https://amazon.com/">Amazon [Microsoft until 2018]</a>)
      <dt>Participate:
@@ -664,7 +666,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p> Publication as an Editors' Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may
     be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite
     this document as other than work in progress. </p>
-   <p> This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20170801/"> <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/2004/01/pp-impl/109735/status" rel="disclosure">public list of any
+   <p> This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20170801/"> <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/groups/wg/immersive-web/ipr" rel="disclosure">public list of any
     patent disclosures</a> made in connection with the deliverables of the group; that page also
     includes instructions for disclosing a patent. An individual who has actual knowledge of a
     patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20170801/#def-essential">Essential
@@ -837,7 +839,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>Additional buttons or axes may be exposed after these reserved indices, and SHOULD appear in order of decreasing importance. Related axes (such as both axes of a thumbstick) MUST be grouped and, if applicable, MUST appear in X, Y, Z order. Buttons reserved by the UA or platform MUST NOT be exposed.</p>
    <section class="note"> This diagram demonstrates how two example controllers would be exposed with the <code class="idl"><a data-link-type="idl">"xr-standard"</a></code> mapping. Images are not intended to represent any particular device and are used for reference purposes only. <img alt="Simple &apos;xr-standard&apos; controller and Advanced &apos;xr-standard&apos; controller" src="images/xr-standard-mapping.svg"> </section>
    <h2 class="heading settled" data-level="4" id="security"><span class="secno">4. </span><span class="content">Security and Privacy</span><a class="self-link" href="#security"></a></h2>
-   <p>The WebXR Device API provides powerful new features which bring with them several unique privacy, security, and comfort risks that user agents must take steps to mitigate. This topic is covered in detail as part of the <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>. This module adds additional considerations, but does not change the fundamental <a href="https://www.w3.org/TR/webxr/#security">WebXR security and privacy</a> principles.</p>
+   <p>The WebXR Device API provides powerful new features which bring with them several unique privacy, security, and comfort risks that user agents must take steps to mitigate. This topic is covered in detail as part of the <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>. This module adds additional considerations, but does not change the fundamental <a href="https://immersive-web.github.io/webxr/#security">WebXR security and privacy</a> principles.</p>
    <h3 class="heading settled" data-level="4.1" id="fingerprinting-security"><span class="secno">4.1. </span><span class="content">Fingerprinting</span><a class="self-link" href="#fingerprinting-security"></a></h3>
    <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. As defined in the WebXR Device API, <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①③">XRInputSource</a></code>s are only reported after an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrsession" id="ref-for-xrsession①">XRSession</a></code> has been created, which requires additional protections when <a data-link-type="dfn" href="https://immersive-web.github.io/webxr/#sensitive-information" id="ref-for-sensitive-information">sensitive information</a> will be exposed. In addition, this module requires <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①④">XRInputSource</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①⑥">gamepad</a></code>.<code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dom-gamepad-id" id="ref-for-dom-gamepad-id①">id</a></code> to not report a string identifiers.</p>
    <h2 class="heading settled" data-level="5" id="ack"><span class="secno">5. </span><span class="content">Acknowledgements</span><a class="self-link" href="#ack"></a></h2>
@@ -1116,7 +1118,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-gamepad">[GAMEPAD]
-   <dd>Steve Agoston; et al. <a href="https://www.w3.org/TR/gamepad/">Gamepad</a>. 8 April 2021. WD. URL: <a href="https://www.w3.org/TR/gamepad/">https://www.w3.org/TR/gamepad/</a>
+   <dd>Steve Agoston; et al. <a href="https://www.w3.org/TR/gamepad/">Gamepad</a>. 9 July 2021. WD. URL: <a href="https://www.w3.org/TR/gamepad/">https://www.w3.org/TR/gamepad/</a>
    <dt id="biblio-webidl">[WebIDL]
    <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
    <dt id="biblio-webxr">[WEBXR]
