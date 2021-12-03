@@ -20,6 +20,7 @@ This repo is for the design of the [WebXR Gamepads Module - Level 1][21] which a
 * [Legacy WebVR API Specification][2]: Legacy WebVR API 1.1 specification for JavaScript API for accessing VR displays. Development of the WebVR API has halted in favor of being replaced the WebXR Device API. Several browsers will continue to support this version of the API in the meantime.
 * [Legacy Gamepad Extensions API Specification][6]: Legacy WebVR API extensions the Gamepad API to enable access to motion controller capabilities.
 
+See also [list of all specifications with detailed status in Working Group and Community Group](https://www.w3.org/immersive-web/list_spec.html). 
 
 ## Relevant Links
 
