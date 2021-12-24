@@ -5,7 +5,6 @@ Group: immersivewebwg
 Status: ED
 TR: https://www.w3.org/TR/webxr-gamepads-module-1/
 ED: https://immersive-web.github.io/webxr-gamepads-module/
-Previous Version: https://www.w3.org/TR/2019/WD-webxr-gamepads-module-1-20210824/
 Repository: immersive-web/webxr-gamepads-module
 Level: 1
 Mailing List Archives: https://lists.w3.org/Archives/Public/public-immersive-web-wg/
@@ -42,10 +41,11 @@ spec:webxr-1;
 spec: WebXR Device API - Level 1; urlPrefix: https://www.w3.org/TR/webxr/#
     type: dfn; text: list of frame updates; for: XRSession; url: xrsession-list-of-frame-updates
     type: dfn; text: time; for: XRFrame; url: xrframe-time
-spec: Gamepad; urlPrefix: https://w3c.github.io/gamepad/#
+spec: Gamepad; urlPrefix: https://www.w3.org/TR/gamepad/#
     type: interface; text: Gamepad; url: dom-gamepad
     type: interface; text: GamepadButton; url: dom-gamepadbutton
     type: enum; text: GamepadMappingType; url: dom-gamepadmappingtype
+    type: enum-value; text: "xr-standard"; for: GamepadMappingType; url: dfn-xr-standard
     type: method; text: navigator.getGamepads(); url: dom-navigator-getgamepads
     type: attribute; text: id; for: Gamepad; url: dom-gamepad-id
     type: attribute; text: index; for: Gamepad; url: dom-gamepad-index
@@ -280,7 +280,7 @@ Devices that lack one of the optional inputs listed in the tables above MUST pre
 Additional buttons or axes may be exposed after these reserved indices, and SHOULD appear in order of decreasing importance. Related axes (such as both axes of a thumbstick) MUST be grouped and, if applicable, MUST appear in X, Y, Z order. Buttons reserved by the UA or platform MUST NOT be exposed.
 
 <section class="note">
-This diagram demonstrates how two example controllers would be exposed with the {{GamepadMappingType/"xr-standard"}} mapping. Images are not intended to represent any particular device and are used for reference purposes only. <img src="images/xr-standard-mapping.svg" alt="Simple 'xr-standard' controller and Advanced 'xr-standard' controller">
+This diagram demonstrates how two example controllers would be exposed with the {{GamepadMappingType/"xr-standard"}} mapping. Images are not intended to represent any particular device and are used for reference purposes only. <img src="images/xr-standard-mapping.svg" width="750px" alt="Simple 'xr-standard' controller and Advanced 'xr-standard' controller">
 </section>
 
 
