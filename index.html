@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version cace53f8c, updated Tue Dec 7 12:12:54 2021 -0800" name="generator">
   <link href="https://www.w3.org/TR/webxr-gamepads-module-1/" rel="canonical">
-  <meta content="05302869e56edf60836b31e7a68f0655e9441ebc" name="document-revision">
+  <meta content="55a525a8fb91d58e9e9ecec94f6a0eb6960d936c" name="document-revision">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
 <style>
@@ -635,7 +635,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Gamepads Module - Level 1</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2021-12-24">24 December 2021</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2021-12-28">28 December 2021</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -796,7 +796,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①⓪">gamepad</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-id" id="ref-for-dom-gamepad-id">id</a></code> attribute MUST be an empty string (<code>""</code>).</p>
     <li data-md>
-     <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①①">gamepad</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-index" id="ref-for-dom-gamepad-index">index</a></code> attribute MUST be <code>-1</code>.</p>
+     <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①①">gamepad</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-index" id="ref-for-dom-gamepad-index">index</a></code> attribute MUST be <code>-1</code> if it is not exposed via <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads" id="ref-for-dom-navigator-getgamepads②">navigator.getGamepads()</a></code>, otherwise it should be assigned as specified by <a data-link-type="biblio" href="#biblio-gamepad">[GAMEPAD]</a>.</p>
     <li data-md>
      <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①②">gamepad</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-connected" id="ref-for-dom-gamepad-connected">connected</a></code> attribute MUST be <code>true</code> until the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①①">XRInputSource</a></code> is removed from the <a data-link-type="dfn" href="https://immersive-web.github.io/webxr/#list-of-active-xr-input-sources" id="ref-for-list-of-active-xr-input-sources">list of active XR input sources</a> or the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrsession" id="ref-for-xrsession">XRSession</a></code> is ended.</p>
     <li data-md>
@@ -993,6 +993,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <a href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads">https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-navigator-getgamepads">3.1. Navigator</a> <a href="#ref-for-dom-navigator-getgamepads①">(2)</a>
+    <li><a href="#ref-for-dom-navigator-getgamepads②">3.2. Gamepad</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dom-gamepadbutton-pressed">
@@ -1133,7 +1134,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
-    <a data-link-type="biblio">[gamepad]</a> defines the following terms:
+    <a data-link-type="biblio">[GAMEPAD]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-dfn-xr-standard">"xr-standard"</span>
      <li><span class="dfn-paneled" id="term-for-dom-gamepad">Gamepad</span>
@@ -1190,7 +1191,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
    <dt id="biblio-webxr">[WEBXR]
-   <dd>Brandon Jones; et al. <a href="https://www.w3.org/TR/webxr/"><cite>WebXR Device API</cite></a>. 26 October 2021. WD. URL: <a href="https://www.w3.org/TR/webxr/">https://www.w3.org/TR/webxr/</a>
+   <dd>Brandon Jones; Manish Goregaokar; Rik Cabanier. <a href="https://www.w3.org/TR/webxr/"><cite>WebXR Device API</cite></a>. 24 December 2021. WD. URL: <a href="https://www.w3.org/TR/webxr/">https://www.w3.org/TR/webxr/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://immersive-web.github.io/webxr/#xrinputsource"><c- g>XRInputSource</c-></a> {
