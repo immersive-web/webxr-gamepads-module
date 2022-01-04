@@ -201,7 +201,7 @@ Gamepad {#gamepad-differences}
 The following {{Gamepad}} attributes MUST exhibit the following behavioral restrictions when the {{Gamepad}} has been returned by an {{XRInputSource}}'s {{XRInputSource/gamepad}} attribute.
 
   - {{XRInputSource/gamepad}}'s {{Gamepad/id}} attribute MUST be an empty string (<code>""</code>).
-  - {{XRInputSource/gamepad}}'s {{Gamepad/index}} attribute MUST be <code>-1</code> if it is not exposed via {{navigator.getGamepads()}}, otherwise it should be assigned as specified by [=select an unused gamepad index=].
+  - {{XRInputSource/gamepad}}'s {{Gamepad/index}} attribute MUST be <code>-1</code> if it is not exposed via {{navigator.getGamepads()}}, otherwise it should be assigned as specified by [=select an unused gamepad index|selecting an unused gamepad index=].
   - {{XRInputSource/gamepad}}'s {{Gamepad/connected}} attribute MUST be <code>true</code> until the {{XRInputSource}} is removed from the [=list of active XR input sources=] or the {{XRSession}} is ended.
   - If an axis reported by the {{XRInputSource/gamepad}}'s {{Gamepad/axes}} array represents an axis of a touchpad, the value MUST be <code>0</code> when the associated {{GamepadButton}}'s {{GamepadButton/touched}} is <code>false</code>.
 
