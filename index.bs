@@ -190,6 +190,10 @@ Gamepad API Integration {#gamepad-api-integration}
 
 {{Gamepad}} instances returned by an {{XRInputSource}}'s {{XRInputSource/gamepad}} attribute behave as described by the <a href="https://www.w3.org/TR/gamepad/">Gamepad API</a>, with several additional behavioral restrictions.
 
+An {{XRInputSource}}'s associated {{Gamepad}} MAY be exposed via {{navigator.getGamepads()}}, even if there is no active XR session by user agent choice. This allows XR devices to be used as "regular" gamepads if the user agent wishes to allow this.
+
+Note: Hand tracking {{XRInputSource}}s as described in [[WEBXR-HAND-INPUT-1]] may contain a {{Gamepad}} if the user agent wishes to allow hand-based input sources to be used with gamepad-based content.
+
 Navigator {#navigator-differences}
 -----------------------
 
