@@ -103,7 +103,6 @@ spec: Gamepad; urlPrefix: https://www.w3.org/TR/gamepad/#
     border-style: solid;
     border-width: 1px;
     background: var(--def-bg);
-    color: #fff;
     font-family: sans-serif;
     font-weight: bold;
     border-color: var(--def-border);
