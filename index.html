@@ -6,9 +6,9 @@
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version cace53f8c, updated Tue Dec 7 12:12:54 2021 -0800" name="generator">
+  <meta content="Bikeshed version 2e3c4c68b, updated Fri Jan 14 14:49:00 2022 -0800" name="generator">
   <link href="https://www.w3.org/TR/webxr-gamepads-module-1/" rel="canonical">
-  <meta content="904a5e3411be771f18f04b69ee4f3289bf0afbbf" name="document-revision">
+  <meta content="96262804f5cc72645e9a62fd1284412bd743a9c3" name="document-revision">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
 <style>
@@ -634,7 +634,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">WebXR Gamepads Module - Level 1</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-01-05">5 January 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-02-03">3 February 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -715,6 +715,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <a href="#security"><span class="secno">4</span> <span class="content">Security and Privacy</span></a>
      <ol class="toc">
       <li><a href="#fingerprinting-security"><span class="secno">4.1</span> <span class="content">Fingerprinting</span></a>
+     </ol>
+    <li>
+     <a href="#changes"><span class="secno"></span> <span class="content"> Changes</span></a>
+     <ol class="toc">
+      <li><a href="#changes-from-20191010"><span class="secno"></span> <span class="content"> Changes from the <span>First Public Working Draft 10 October 2019</span></span></a>
      </ol>
     <li><a href="#ack"><span class="secno">5</span> <span class="content">Acknowledgements</span></a>
     <li>
@@ -870,6 +875,20 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>The WebXR Device API provides powerful new features which bring with them several unique privacy, security, and comfort risks that user agents must take steps to mitigate. This topic is covered in detail as part of the <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>. This module adds additional considerations, but does not change the fundamental <a href="https://www.w3.org/TR/webxr/#security">WebXR security and privacy</a> principles.</p>
    <h3 class="heading settled" data-level="4.1" id="fingerprinting-security"><span class="secno">4.1. </span><span class="content">Fingerprinting</span><a class="self-link" href="#fingerprinting-security"></a></h3>
    <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. As defined in the WebXR Device API, <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①⑤">XRInputSource</a></code>s are only reported after an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrsession" id="ref-for-xrsession①">XRSession</a></code> has been created, which requires additional protections when <a data-link-type="dfn" href="https://immersive-web.github.io/webxr/#sensitive-information" id="ref-for-sensitive-information">sensitive information</a> will be exposed. In addition, this module requires <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①⑥">XRInputSource</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①⑥">gamepad</a></code>.<code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-id" id="ref-for-dom-gamepad-id①">id</a></code> to not report a string identifiers.</p>
+   <h2 class="no-num heading settled" id="changes"><span class="content"> Changes</span><a class="self-link" href="#changes"></a></h2>
+   <h3 class="no-num heading settled" id="changes-from-20191010"><span class="content"> Changes from the <a href="https://www.w3.org/TR/2019/WD-webxr-gamepads-module-1-20191010/">First Public Working Draft 10 October 2019</a></span><a class="self-link" href="#changes-from-20191010"></a></h3>
+   <ul>
+    <li data-md>
+     <p>Explicitly leave Gamepad API Integration up to the user agent (<a href="https://github.com/immersive-web/webxr-gamepads-module/pull/49">GitHub #49</a>)</p>
+    <li data-md>
+     <p>Added spec text specifying that reserved buttons are not exposed (<a href="https://github.com/immersive-web/webxr-gamepads-module/pull/48">GitHub #48</a>)</p>
+    <li data-md>
+     <p>Relaxed definitions of gamepad.index (<a href="https://github.com/immersive-web/webxr-gamepads-module/pull/46">GitHub #46</a>, <a href="https://github.com/immersive-web/webxr-gamepads-module/pull/47">GitHub #47</a>)</p>
+    <li data-md>
+     <p>Defined primary trigger and linked buttons (<a href="https://github.com/immersive-web/webxr-gamepads-module/pull/24">GitHub #24</a>)</p>
+    <li data-md>
+     <p>Clarified operations when the gamepad state is updated (<a href="https://github.com/immersive-web/webxr-gamepads-module/pull/22">GitHub #22</a>)</p>
+   </ul>
    <h2 class="heading settled" data-level="5" id="ack"><span class="secno">5. </span><span class="content">Acknowledgements</span><a class="self-link" href="#ack"></a></h2>
    <p>The following individuals have contributed to the design of the WebXR Device API specification:</p>
    <ul>
