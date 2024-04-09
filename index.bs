@@ -46,7 +46,7 @@ spec: Gamepad; urlPrefix: https://www.w3.org/TR/gamepad/#
     type: interface; text: Gamepad; url: dom-gamepad
     type: interface; text: GamepadButton; url: dom-gamepadbutton
     type: enum; text: GamepadMappingType; url: dom-gamepadmappingtype
-    type: enum-value; text: "xr-standard"; for: GamepadMappingType; url: dfn-xr-standard
+    type: enum-value; text: "xr-standard"; for: GamepadMappingType; url: dom-gamepadmappingtype-xr-standard
     type: method; text: navigator.getGamepads(); url: dom-navigator-getgamepads
     type: attribute; text: id; for: Gamepad; url: dom-gamepad-id
     type: attribute; text: index; for: Gamepad; url: dom-gamepad-index
