@@ -180,7 +180,6 @@ To <dfn for=XRFrame>apply gamepad frame updates</dfn> for an {{XRFrame}} |frame|
  1. For each {{XRInputSource}} with a {{XRInputSource/gamepad}} |gamepad| associated with |frame|'s {{XRFrame/session}}, perform the following steps:
     1. Update |gamepad| to reflect the gamepad data at |frame|'s [=XRFrame/time=].
 
-</div>
 
 NOTE: This means that the {{XRInputSource/gamepad}} object is "live", and any internal state is to be updated in-place every frame. Furthermore, it doesn't work to save a reference to an {{XRInputSource}}'s {{gamepad}} on one frame and compare it to the same {{XRInputSource}}'s {{gamepad}} from a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should cache the state in question.
 
@@ -336,4 +335,3 @@ The following individuals have contributed to the design of the WebXR Device API
 
 And a special thanks to <a href="mailto:vladv@unity3d.com">Vladimir Vukicevic</a> (<a href="https://unity3d.com/">Unity</a>) for kick-starting this whole adventure!
 
-</section>
