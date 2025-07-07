@@ -5,9 +5,11 @@
   <title>WebXR Gamepads Module - Level 1</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
+  <meta content="Bikeshed version 618007319, updated Thu Jun 26 17:23:55 2025 -0700" name="generator">
   <link href="https://www.w3.org/TR/webxr-gamepads-module-1/" rel="canonical">
-  <meta content="4ea4284617dfa7489f175963f23bd065e3eaa253" name="document-revision">
+  <meta content="f620e6c7b335ed9da2bf18735b0ff1b763752cf7" name="revision">
+  <meta content="dark light" name="color-scheme">
+  <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
   <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
   <link href="favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
 <style>
@@ -134,7 +136,6 @@ pre .property::before, pre .property::after {
 }
 </style>
 <style>/* Boilerplate: style-colors */
-
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
     color-scheme: light dark;
@@ -388,11 +389,15 @@ figcaption:not(.no-marker)::before {
 :root {
     --dfnpanel-bg: #ddd;
     --dfnpanel-text: var(--text);
+    --dfnpanel-target-bg: #ffc;
+    --dfnpanel-target-outline: orange;
 }
 @media (prefers-color-scheme: dark) {
     :root {
         --dfnpanel-bg: #222;
         --dfnpanel-text: var(--text);
+        --dfnpanel-target-bg: #333;
+        --dfnpanel-target-outline: silver;
     }
 }
 .dfn-panel {
@@ -415,11 +420,13 @@ figcaption:not(.no-marker)::before {
 .dfn-panel > b { display: block; }
 .dfn-panel a { color: var(--dfnpanel-text); }
 .dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel a:focus {
+    outline: 5px auto Highlight;
+    outline: 5px auto -webkit-focus-ring-color;
+}
 .dfn-panel > b + b { margin-top: 0.25em; }
 .dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
 .dfn-panel li a {
-    white-space: pre;
-    display: inline-block;
     max-width: calc(300px - 1.5em - 1em);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -428,67 +435,84 @@ figcaption:not(.no-marker)::before {
 .dfn-panel.activated {
     display: inline-block;
     position: fixed;
-    left: .5em;
+    left: 8px;
     bottom: 2em;
     margin: 0 auto;
     max-width: calc(100vw - 1.5em - .4em - .5em);
     max-height: 30vh;
+    transition: left 1s ease-out, bottom 1s ease-out;
 }
 
-.dfn-paneled[role="button"] { cursor: pointer; }
+.dfn-panel .link-item:hover {
+    text-decoration: underline;
+}
+.dfn-panel .link-item .copy-icon {
+    opacity: 0;
+}
+.dfn-panel .link-item:hover .copy-icon,
+.dfn-panel .link-item .copy-icon:focus {
+    opacity: 1;
+}
+
+.dfn-panel .copy-icon {
+    display: inline-block;
+    margin-right: 0.5em;
+    width: 0.85em;
+    height: 1em;
+    border-radius: 3px;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.dfn-panel .copy-icon .icon {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dfn-panel .copy-icon .icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    background-color: #ccc;
+    opacity: 0.25;
+    transform: translate(3px, -3px);
+}
+
+.dfn-panel .copy-icon:active .icon::before {
+    opacity: 1;
+}
+
+.dfn-paneled[role="button"] { cursor: help; }
+
+.highlighted {
+    animation: target-fade 3s;
+}
+
+@keyframes target-fade {
+    from {
+        background-color: var(--dfnpanel-target-bg);
+        outline: 5px solid var(--dfnpanel-target-outline);
+    }
+    to {
+        color: var(--a-normal-text);
+        background-color: transparent;
+        outline: transparent;
+    }
+}
 </style>
-<style>/* Boilerplate: style-dfn-panel */
-:root {
-    --dfnpanel-bg: #ddd;
-    --dfnpanel-text: var(--text);
+<style>/* Boilerplate: style-idl-highlighting */
+pre.idl.highlight {
+    background: var(--borderedblock-bg, var(--def-bg));
 }
-@media (prefers-color-scheme: dark) {
-    :root {
-        --dfnpanel-bg: #222;
-        --dfnpanel-text: var(--text);
-    }
-}
-.dfn-panel {
-    position: absolute;
-    z-index: 35;
-    width: 20em;
-    width: 300px;
-    height: auto;
-    max-height: 500px;
-    overflow: auto;
-    padding: 0.5em 0.75em;
-    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
-    background: var(--dfnpanel-bg);
-    color: var(--dfnpanel-text);
-    border: outset 0.2em;
-    white-space: normal; /* in case it's moved into a pre */
-}
-.dfn-panel:not(.on) { display: none; }
-.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
-.dfn-panel > b { display: block; }
-.dfn-panel a { color: var(--dfnpanel-text); }
-.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
-.dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
-.dfn-panel li a {
-    white-space: pre;
-    display: inline-block;
-    max-width: calc(300px - 1.5em - 1em);
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.dfn-panel.activated {
-    display: inline-block;
-    position: fixed;
-    left: .5em;
-    bottom: 2em;
-    margin: 0 auto;
-    max-width: calc(100vw - 1.5em - .4em - .5em);
-    max-height: 30vh;
-}
-
-.dfn-paneled[role="button"] { cursor: pointer; }
 </style>
 <style>/* Boilerplate: style-issues */
 a[href].issue-return {
@@ -509,8 +533,40 @@ a[href].issue-return {
     margin-bottom: 0;
 }
 </style>
-<style>/* Boilerplate: style-selflinks */
+<style>/* Boilerplate: style-ref-hints */
+:root {
+    --ref-hint-bg: #ddd;
+    --ref-hint-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ref-hint-bg: #222;
+        --ref-hint-text: var(--text);
+    }
+}
 
+.ref-hint {
+    display: inline-block;
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.5em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--ref-hint-bg);
+    color: var(--ref-hint-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+
+.ref-hint * { margin: 0; padding: 0; text-indent: 0; }
+
+.ref-hint ul { padding: 0 0 0 1em; list-style: none; }
+</style>
+<style>/* Boilerplate: style-selflinks */
 :root {
     --selflink-text: white;
     --selflink-bg: gray;
@@ -570,14 +626,6 @@ a.self-link::before            { content: "¶"; }
 dfn > a.self-link::before      { content: "#"; }
 </style>
 <style>/* Boilerplate: style-syntax-highlighting */
-
-            pre.idl.highlight {
-                background: var(--borderedblock-bg, var(--def-bg));
-            }
-            
-</style>
-<style>/* Boilerplate: style-syntax-highlighting */
-
 code.highlight { padding: .1em; border-radius: .3em; }
 pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
 
@@ -634,7 +682,6 @@ c-[vc] { color: #0077aa } /* Name.Variable.Class */
 c-[vg] { color: #0077aa } /* Name.Variable.Global */
 c-[vi] { color: #0077aa } /* Name.Variable.Instance */
 c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
-
 
 @media (prefers-color-scheme: dark) {
     .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
@@ -701,9 +748,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </style>
  <body class="h-entry">
   <div class="head">
-   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
+   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/">
+    <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+</a>
+</p>
    <h1 class="p-name no-ref" id="title">WebXR Gamepads Module - Level 1</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-04-09">9 April 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
+    <time class="dt-updated" datetime="2025-07-07">7 July 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -728,7 +779,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2024 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply.
+</p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -737,23 +789,41 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> <em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this
-    technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical
-    reports index</a> at http://www.w3.org/TR/.</em> </p>
-   <p> This document was published by the <a href="https://www.w3.org/groups/wg/immersive-web">Immersive Web Working Group</a> as an Editors' Draft. This document is intended to become a W3C Recommendation.
+   <p>
+    <em>This section describes the status of this document at the time of its publication. A list of current
+    <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this
+    technical report can be found in the
+    <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical
+    reports index</a> at http://www.w3.org/TR/.</em>
+  </p>
+   <p>
+    This document was published by the <a href="https://www.w3.org/groups/wg/immersive-web">Immersive Web Working Group</a>
+    as an Editors' Draft. This document is intended to become a W3C Recommendation.
 
-    Feedback and comments on this specification are welcome. Please use <a href="https://github.com/immersive-web/webxr-gamepads-module/issues">Github issues</a>.
-    Discussions may also be found in the <a href="http://lists.w3.org/Archives/Public/public-immersive-web-wg/">public-immersive-web-wg@w3.org archives</a>. </p>
-   <p> Publication as an Editors' Draft does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. This is a draft document and may
-    be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite
-    this document as other than work in progress. </p>
-   <p> This document was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>.
+    Feedback and comments on this specification are welcome. Please use
+    <a href="https://github.com/immersive-web/webxr-gamepads-module/issues">Github issues</a>.
+    Discussions may also be found in the
+    <a href="http://lists.w3.org/Archives/Public/public-immersive-web-wg/">public-immersive-web-wg@w3.org archives</a>.
+  </p>
+   <p>
+    Publication as an Editors' Draft does not imply endorsement by
+    <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. This is a draft document and may
+    be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to cite
+    this document as other than a work in progress.
+  </p>
+   <p>
+    This document was produced by a group operating under the
+    <a href="https://www.w3.org/policies/patent-policy/">W3C Patent Policy</a>.
     W3C maintains a <a href="https://www.w3.org/groups/wg/immersive-web/ipr" rel="disclosure">public list of any patent
-    disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential
-    Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section
-    6 of the W3C Patent Policy</a>. </p>
-   <p> This document is governed by the <a href="https://www.w3.org/2023/Process-20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>. </p>
-   <p></p>
+    disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent that the individual believes contains
+    <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential
+    Claim(s)</a> must disclose the information in accordance with
+    <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section
+    6 of the W3C Patent Policy</a>.
+  </p>
+   <p>
+    This document is governed by the <a href="https://www.w3.org/policies/process/20231103/" id="w3c_process_revision">03 November 2023 W3C Process Document</a>.
+  </p>
    <p>This WebXR Gamepads Module is designed as a module to be implemented in addition to <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>, and was originally included in WebXR Device API which was divided into core and modules.</p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -786,9 +856,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <li><a href="#fingerprinting-security"><span class="secno">4.1</span> <span class="content">Fingerprinting</span></a>
      </ol>
     <li>
-     <a href="#changes"><span class="secno"></span> <span class="content"> Changes</span></a>
+     <a href="#changes"><span class="secno"></span> <span class="content">
+Changes</span></a>
      <ol class="toc">
-      <li><a href="#changes-from-20191010"><span class="secno"></span> <span class="content"> Changes from the <span>First Public Working Draft 10 October 2019</span></span></a>
+      <li><a href="#changes-from-20191010"><span class="secno"></span> <span class="content">
+Changes from the <span>First Public Working Draft 10 October 2019</span></span></a>
      </ol>
     <li><a href="#ack"><span class="secno">5</span> <span class="content">Acknowledgements</span></a>
     <li>
@@ -832,15 +904,23 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>Terms like "XR Device", "XR Application", etc. are generally understood to apply to any of the above. Portions of this document that only apply to a subset of these devices will indicate so as appropriate.</p>
    <p>XR Devices often have additional controller hardware that allows users to interact with immersive experiences with button, trigger, thumbstick, or touchpad inputs. Frequently these devices are spatially tracked as well, and referred to as "motion controllers", "handheld controllers", or "tracked controllers".</p>
    <h2 class="heading settled" data-level="2" id="webxr-device-api-integration"><span class="secno">2. </span><span class="content">WebXR Device API Integration</span><a class="self-link" href="#webxr-device-api-integration"></a></h2>
-    As defined in the <a href="https://www.w3.org/TR/webxr/">WebXR Device API API</a>, an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource">XRInputSource</a></code> represents an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="xr-input-source">XR input source</dfn>, which is any input mechanism which allows the user to perform targeted actions in the same virtual space as the <a data-link-type="dfn">viewer</a>. Example <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source">XR input source</a>s include, but are not limited to, handheld controllers, optically tracked hands, and gaze-based input methods that operate on the <a data-link-type="dfn">viewer</a>'s pose. 
-   <p>This document outlines the behavior of an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①">XRInputSource</a></code> when it has button, trigger, thumbstick, or touchpad data to report. This is commonly a motion controller, but may also be headset with buttons, triggers, thumbsticks, or touchpads on the <a data-link-type="dfn">XR device</a>.  As stated in the WebXR device API, input mechanisms which are not explicitly associated with the <a data-link-type="dfn">XR Device</a>, such as traditional gamepads, MUST NOT be considered <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source①">XR input source</a>s.</p>
+   
+As defined in the <a href="https://www.w3.org/TR/webxr/">WebXR Device API API</a>, an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource">XRInputSource</a></code> represents an <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="xr-input-source">XR input source</dfn>, which is any input mechanism which allows the user to perform targeted actions in the same virtual space as the <u class="link-error" data-lt="viewer" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;viewer&apos; with spec &apos;webxr-1&apos;.">viewer</u>. Example <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source">XR input source</a>s include, but are not limited to, handheld controllers, optically tracked hands, and gaze-based input methods that operate on the <u class="link-error" data-lt="viewer" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;viewer&apos; with spec &apos;webxr-1&apos;.">viewer</u>’s pose.
+
+
+   <p>This document outlines the behavior of an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①">XRInputSource</a></code> when it has button, trigger, thumbstick, or touchpad data to report. This is commonly a motion controller, but may also be headset with buttons, triggers, thumbsticks, or touchpads on the <u class="link-error" data-lt="XR device" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;xr device&apos; with spec &apos;webxr-1&apos;.">XR device</u>.  As stated in the WebXR device API, input mechanisms which are not explicitly associated with the <u class="link-error" data-lt="XR Device" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;xr device&apos; with spec &apos;webxr-1&apos;.">XR Device</u>, such as traditional gamepads, MUST NOT be considered <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source①">XR input source</a>s.</p>
    <h3 class="heading settled" data-level="2.1" id="xrinputsource-interface"><span class="secno">2.1. </span><span class="content">XRInputSource</span><a class="self-link" href="#xrinputsource-interface"></a></h3>
    <p>Button, trigger, thumbstick, and touchpad data is reported though a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad">Gamepad</a></code> object exposed on the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource②">XRInputSource</a></code> it is associated with.</p>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource③"><c- g>XRInputSource</c-></a> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad①"><c- n>Gamepad</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="Gamepad?" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad"><c- g>gamepad</c-></a>;
 };
 </pre>
-   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-gamepad"><code>gamepad</code></dfn> attribute is a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad②">Gamepad</a></code> that describes the state of any buttons and axes on the <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source②">XR input source</a>. If the <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source③">XR input source</a> does not have at least one of the following properties, the <code class="idl"><a data-link-type="idl">gamepad</a></code> attribute MUST be <code>null</code>:</p>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="XRInputSource" data-dfn-type="attribute" data-export id="dom-xrinputsource-gamepad"><code>gamepad</code></dfn> attribute is a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad②">Gamepad</a></code> that describes the state of any buttons and axes on the <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source②">XR input source</a>. If the <a data-link-type="dfn" href="#xr-input-source" id="ref-for-xr-input-source③">XR input source</a> does not have at least one of the following properties, the <code class="idl"><u class="link-error" data-lt="gamepad" title="LINK ERROR: Ambiguous for-less link for &apos;gamepad&apos;, please see <https://speced.github.io/bikeshed/#ambi-for> for instructions:
+Local references:
+spec:webxr-gamepads-module-1; type:attribute; for:XRInputSource; text:gamepad
+for-less references:
+spec:gamepad; type:permission; for:/; text:&quot;gamepad&quot;
+spec:gamepad; type:permission; for:/; text:&quot;gamepad&quot;">gamepad</u></code> attribute MUST be <code>null</code>:</p>
    <ul>
     <li data-md>
      <p>A single button and a gripSpace</p>
@@ -850,7 +930,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <p>One or more axes</p>
    </ul>
    <h3 class="heading settled" data-level="2.2" id="xrsession-interface"><span class="secno">2.2. </span><span class="content">XRSession</span><a class="self-link" href="#xrsession-interface"></a></h3>
-   <p><code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource④">XRInputSource</a></code>s are reported in the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrsession-inputsources" id="ref-for-dom-xrsession-inputsources">inputSources</a></code> array as they are connected and disconnected. When the presence of a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①">gamepad</a></code> changes for any entry in the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrsession-inputsources" id="ref-for-dom-xrsession-inputsources①">inputSources</a></code> array, the user agent MUST invoke the WebXR Device API’s algorithm for <a data-link-type="dfn">responding to input source attribute changes</a>.</p>
+   <p><code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource④">XRInputSource</a></code>s are reported in the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrsession-inputsources" id="ref-for-dom-xrsession-inputsources">inputSources</a></code> array as they are connected and disconnected. When the presence of a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①">gamepad</a></code> changes for any entry in the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrsession-inputsources" id="ref-for-dom-xrsession-inputsources①">inputSources</a></code> array, the user agent MUST invoke the WebXR Device API’s algorithm for <u class="link-error" data-lt="change input source" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;change input source&apos; with spec &apos;webxr-1&apos;.">responding to input source attribute changes</u>.</p>
    <p>The <a data-link-type="dfn" href="https://www.w3.org/TR/webxr/#xrsession-list-of-frame-updates" id="ref-for-xrsession-list-of-frame-updates">list of frame updates</a> is updated to include <a data-link-type="dfn" href="#xrframe-apply-gamepad-frame-updates" id="ref-for-xrframe-apply-gamepad-frame-updates">apply gamepad frame updates</a>.</p>
    <p>To <dfn class="dfn-paneled" data-dfn-for="XRFrame" data-dfn-type="dfn" data-noexport id="xrframe-apply-gamepad-frame-updates">apply gamepad frame updates</dfn> for an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrframe" id="ref-for-xrframe">XRFrame</a></code> <var>frame</var>, the user agent MUST run the following steps:</p>
    <ol>
@@ -861,28 +941,38 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        <p>Update <var>gamepad</var> to reflect the gamepad data at <var>frame</var>’s <a data-link-type="dfn" href="https://www.w3.org/TR/webxr/#xrframe-time" id="ref-for-xrframe-time">time</a>.</p>
      </ol>
    </ol>
-   <p class="note" role="note"><span class="marker">NOTE:</span> This means that the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad③">gamepad</a></code> object is "live", and any internal state is to be updated in-place every frame. Furthermore, it doesn’t work to save a reference to an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource⑥">XRInputSource</a></code>'s <code class="idl"><a data-link-type="idl">gamepad</a></code> on one frame and compare it to the same <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource⑦">XRInputSource</a></code>'s <code class="idl"><a data-link-type="idl">gamepad</a></code> from a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should cache the state in question.</p>
+   <p class="note" role="note"><span class="marker">NOTE:</span> This means that the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad③">gamepad</a></code> object is "live", and any internal state is to be updated in-place every frame. Furthermore, it doesn’t work to save a reference to an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource⑥">XRInputSource</a></code>’s <code class="idl"><u class="link-error" data-lt="gamepad" title="LINK ERROR: Ambiguous for-less link for &apos;gamepad&apos;, please see <https://speced.github.io/bikeshed/#ambi-for> for instructions:
+Local references:
+spec:webxr-gamepads-module-1; type:attribute; for:XRInputSource; text:gamepad
+for-less references:
+spec:gamepad; type:permission; for:/; text:&quot;gamepad&quot;
+spec:gamepad; type:permission; for:/; text:&quot;gamepad&quot;">gamepad</u></code> on one frame and compare it to the same <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource⑦">XRInputSource</a></code>’s <code class="idl"><u class="link-error" data-lt="gamepad" title="LINK ERROR: Ambiguous for-less link for &apos;gamepad&apos;, please see <https://speced.github.io/bikeshed/#ambi-for> for instructions:
+Local references:
+spec:webxr-gamepads-module-1; type:attribute; for:XRInputSource; text:gamepad
+for-less references:
+spec:gamepad; type:permission; for:/; text:&quot;gamepad&quot;
+spec:gamepad; type:permission; for:/; text:&quot;gamepad&quot;">gamepad</u></code> from a subsequent frame to test for state changes, because they will be the same object. Therefore developers that wish to compare input state from frame to frame should cache the state in question.</p>
    <h2 class="heading settled" data-level="3" id="gamepad-api-integration"><span class="secno">3. </span><span class="content">Gamepad API Integration</span><a class="self-link" href="#gamepad-api-integration"></a></h2>
-   <p><code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad③">Gamepad</a></code> instances returned by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource⑧">XRInputSource</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad④">gamepad</a></code> attribute behave as described by the <a href="https://www.w3.org/TR/gamepad/">Gamepad API</a>, with several additional behavioral restrictions.</p>
-   <p>An <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource⑨">XRInputSource</a></code>'s associated <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad④">Gamepad</a></code> MAY be exposed via <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads" id="ref-for-dom-navigator-getgamepads">navigator.getGamepads()</a></code>, even if there is no active XR session by user agent choice. This allows XR devices to be used as "regular" gamepads if the user agent wishes to allow this.</p>
+   <p><code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad③">Gamepad</a></code> instances returned by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource⑧">XRInputSource</a></code>’s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad④">gamepad</a></code> attribute behave as described by the <a href="https://www.w3.org/TR/gamepad/">Gamepad API</a>, with several additional behavioral restrictions.</p>
+   <p>An <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource⑨">XRInputSource</a></code>’s associated <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad④">Gamepad</a></code> MAY be exposed via <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads" id="ref-for-dom-navigator-getgamepads">navigator.getGamepads()</a></code>, even if there is no active XR session by user agent choice. This allows XR devices to be used as "regular" gamepads if the user agent wishes to allow this.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Hand tracking <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①⓪">XRInputSource</a></code>s as described in <a data-link-type="biblio" href="#biblio-webxr-hand-input-1" title="WebXR Hand Input Module - Level 1">[WEBXR-HAND-INPUT-1]</a> may contain a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑤">Gamepad</a></code> if the user agent wishes to allow hand-based input sources to be used with gamepad-based content.</p>
    <h3 class="heading settled" data-level="3.1" id="navigator-differences"><span class="secno">3.1. </span><span class="content">Navigator</span><a class="self-link" href="#navigator-differences"></a></h3>
-   <p>The <a href="https://www.w3.org/TR/gamepad/">Gamepad API</a> states a snapshot of <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑥">Gamepad</a></code> data can be retrieved by calling the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads" id="ref-for-dom-navigator-getgamepads①">navigator.getGamepads()</a></code> function. However, <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑦">Gamepad</a></code> instances returned by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①①">XRInputSource</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑤">gamepad</a></code> attribute MUST NOT be included in the array returned by <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads" id="ref-for-dom-navigator-getgamepads②">navigator.getGamepads()</a></code>.</p>
+   <p>The <a href="https://www.w3.org/TR/gamepad/">Gamepad API</a> states a snapshot of <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑥">Gamepad</a></code> data can be retrieved by calling the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads" id="ref-for-dom-navigator-getgamepads①">navigator.getGamepads()</a></code> function. However, <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑦">Gamepad</a></code> instances returned by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①①">XRInputSource</a></code>’s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑤">gamepad</a></code> attribute MUST NOT be included in the array returned by <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads" id="ref-for-dom-navigator-getgamepads②">navigator.getGamepads()</a></code>.</p>
    <h3 class="heading settled" data-level="3.2" id="gamepad-differences"><span class="secno">3.2. </span><span class="content">Gamepad</span><a class="self-link" href="#gamepad-differences"></a></h3>
-   <p>The following <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑧">Gamepad</a></code> attributes MUST exhibit the following behavioral restrictions when the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑨">Gamepad</a></code> has been returned by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①②">XRInputSource</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑥">gamepad</a></code> attribute.</p>
+   <p>The following <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑧">Gamepad</a></code> attributes MUST exhibit the following behavioral restrictions when the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad⑨">Gamepad</a></code> has been returned by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①②">XRInputSource</a></code>’s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑥">gamepad</a></code> attribute.</p>
    <ul>
     <li data-md>
-     <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑦">gamepad</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-id" id="ref-for-dom-gamepad-id">id</a></code> attribute MUST be an empty string (<code>""</code>).</p>
+     <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑦">gamepad</a></code>’s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-id" id="ref-for-dom-gamepad-id">id</a></code> attribute MUST be an empty string (<code>""</code>).</p>
     <li data-md>
-     <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑧">gamepad</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-index" id="ref-for-dom-gamepad-index">index</a></code> attribute MUST be <code>-1</code> if it is not exposed via <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads" id="ref-for-dom-navigator-getgamepads③">navigator.getGamepads()</a></code>, otherwise it should be assigned as specified by <a data-link-type="dfn" href="https://www.w3.org/TR/gamepad/#dfn-selecting-an-unused-gamepad-index" id="ref-for-dfn-selecting-an-unused-gamepad-index">selecting an unused gamepad index</a>.</p>
+     <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑧">gamepad</a></code>’s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-index" id="ref-for-dom-gamepad-index">index</a></code> attribute MUST be <code>-1</code> if it is not exposed via <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads" id="ref-for-dom-navigator-getgamepads③">navigator.getGamepads()</a></code>, otherwise it should be assigned as specified by <a data-link-type="dfn" href="https://www.w3.org/TR/gamepad/#dfn-selecting-an-unused-gamepad-index" id="ref-for-dfn-selecting-an-unused-gamepad-index">selecting an unused gamepad index</a>.</p>
     <li data-md>
-     <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑨">gamepad</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-connected" id="ref-for-dom-gamepad-connected">connected</a></code> attribute MUST be <code>true</code> until the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①③">XRInputSource</a></code> is removed from the <a data-link-type="dfn">list of active XR input sources</a> or the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrsession" id="ref-for-xrsession">XRSession</a></code> is ended.</p>
+     <p><code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad⑨">gamepad</a></code>’s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-connected" id="ref-for-dom-gamepad-connected">connected</a></code> attribute MUST be <code>true</code> until the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①③">XRInputSource</a></code> is removed from the <u class="link-error" data-lt="list of active XR input sources" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;list of active xr input sources&apos; with spec &apos;webxr-1&apos;.">list of active XR input sources</u> or the <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrsession" id="ref-for-xrsession">XRSession</a></code> is ended.</p>
     <li data-md>
-     <p>If an axis reported by the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①⓪">gamepad</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-axes" id="ref-for-dom-gamepad-axes">axes</a></code> array represents an axis of a touchpad, the value MUST be <code>0</code> when the associated <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadbutton" id="ref-for-dom-gamepadbutton">GamepadButton</a></code>'s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadbutton-touched" id="ref-for-dom-gamepadbutton-touched">touched</a></code> is <code>false</code>.</p>
+     <p>If an axis reported by the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①⓪">gamepad</a></code>’s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-axes" id="ref-for-dom-gamepad-axes">axes</a></code> array represents an axis of a touchpad, the value MUST be <code>0</code> when the associated <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadbutton" id="ref-for-dom-gamepadbutton">GamepadButton</a></code>’s <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadbutton-touched" id="ref-for-dom-gamepadbutton-touched">touched</a></code> is <code>false</code>.</p>
    </ul>
-   <h3 class="heading settled" data-level="3.3" id="xr-standard-heading"><span class="secno">3.3. </span><span class="content"><dfn data-dfn-type="dfn" data-export id="xr-standard-gamepad-mapping">"xr-standard" Gamepad Mapping<a class="self-link" href="#xr-standard-gamepad-mapping"></a></dfn></span><a class="self-link" href="#xr-standard-heading"></a></h3>
+   <h3 class="heading settled" data-level="3.3" id="xr-standard-heading"><span class="secno">3.3. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="xr-standard-gamepad-mapping">"xr-standard" Gamepad Mapping</dfn></span><a class="self-link" href="#xr-standard-heading"></a></h3>
    <p>The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard">"xr-standard"</a></code> mapping is defined in the <a href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype">Gamepad API</a> and reserved for use by this spec. It indicates that the layout of the buttons and axes of the <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①①">gamepad</a></code> corresponds as closely as possible to the tables below.</p>
-   <p>In order to report a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping">mapping</a></code> of <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard①">"xr-standard"</a></code> the device MUST report a <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code> of <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer">"tracked-pointer"</a></code> and MUST have a non-<code>null</code> <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code>. It MUST have at least one <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-trigger">primary trigger</dfn>, separate from any touchpads or thumbsticks. The <a data-link-type="dfn" href="#primary-trigger" id="ref-for-primary-trigger">primary trigger</a> MUST trigger the <a data-link-type="dfn">primary action</a> for the input source. The device MAY have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-squeeze-button">primary squeeze button</dfn>, which, if present, MUST trigger the <a data-link-type="dfn">primary squeeze action</a> for the input source. If a device does not meet the requirements for the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard②">"xr-standard"</a></code> mapping it may still expose a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①②">gamepad</a></code> with a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping①">mapping</a></code> of <code>""</code> (empty string). The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard③">"xr-standard"</a></code> mapping MUST only be used by <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad①⓪">Gamepad</a></code> instances reported by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①④">XRInputSource</a></code>.</p>
+   <p>In order to report a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping">mapping</a></code> of <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard①">"xr-standard"</a></code> the device MUST report a <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrinputsource-targetraymode" id="ref-for-dom-xrinputsource-targetraymode">targetRayMode</a></code> of <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrtargetraymode-tracked-pointer" id="ref-for-dom-xrtargetraymode-tracked-pointer">"tracked-pointer"</a></code> and MUST have a non-<code>null</code> <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#dom-xrinputsource-gripspace" id="ref-for-dom-xrinputsource-gripspace">gripSpace</a></code>. It MUST have at least one <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-trigger">primary trigger</dfn>, separate from any touchpads or thumbsticks. The <a data-link-type="dfn" href="#primary-trigger" id="ref-for-primary-trigger">primary trigger</a> MUST trigger the <u class="link-error" data-lt="primary action" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;primary action&apos; with spec &apos;webxr-1&apos;.">primary action</u> for the input source. The device MAY have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="primary-squeeze-button">primary squeeze button</dfn>, which, if present, MUST trigger the <u class="link-error" data-lt="primary squeeze action" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;primary squeeze action&apos; with spec &apos;webxr-1&apos;.">primary squeeze action</u> for the input source. If a device does not meet the requirements for the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard②">"xr-standard"</a></code> mapping it may still expose a <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①②">gamepad</a></code> with a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-mapping" id="ref-for-dom-gamepad-mapping①">mapping</a></code> of <code>""</code> (empty string). The <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard③">"xr-standard"</a></code> mapping MUST only be used by <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad①⓪">Gamepad</a></code> instances reported by an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①④">XRInputSource</a></code>.</p>
    <table class="tg">
     <thead>
      <tr>
@@ -907,7 +997,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <td>Primary thumbstick
       <td>No
    </table>
-    <br> 
+   
+<br>
+
    <table class="tg">
     <thead>
      <tr>
@@ -935,17 +1027,24 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p>Devices that lack one of the optional inputs listed in the tables above MUST preserve their place in the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-buttons" id="ref-for-dom-gamepad-buttons">buttons</a></code> or <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-axes" id="ref-for-dom-gamepad-axes①">axes</a></code> array, reporting a <a data-link-type="dfn" href="#placeholder-button" id="ref-for-placeholder-button">placeholder button</a> or <a data-link-type="dfn" href="#placeholder-axis" id="ref-for-placeholder-axis">placeholder axis</a>, respectively. A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="placeholder-button">placeholder button</dfn> MUST report <code>0</code> for <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadbutton-value" id="ref-for-dom-gamepadbutton-value">value</a></code>, <code>false</code> for <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadbutton-pressed" id="ref-for-dom-gamepadbutton-pressed">pressed</a></code>, and <code>false</code> for <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadbutton-touched" id="ref-for-dom-gamepadbutton-touched①">touched</a></code>. A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="placeholder-axis">placeholder axis</dfn> MUST report <code>0</code>. <a data-link-type="dfn" href="#placeholder-button" id="ref-for-placeholder-button①">Placeholder buttons</a> and <a data-link-type="dfn" href="#placeholder-axis" id="ref-for-placeholder-axis①">axes</a> MUST be omitted if they are the last element in the array or all following elements are also <a data-link-type="dfn" href="#placeholder-button" id="ref-for-placeholder-button②">placeholder buttons</a> or <a data-link-type="dfn" href="#placeholder-axis" id="ref-for-placeholder-axis②">axes</a>.</p>
    <p>Additional buttons or axes may be exposed after these reserved indices, and SHOULD appear in order of decreasing importance. Related axes (such as both axes of a thumbstick) MUST be grouped and, if applicable, MUST appear in X, Y, Z order.</p>
    <h3 class="heading settled" data-level="3.4" id="reserved-buttons"><span class="secno">3.4. </span><span class="content">UA/Platform reserved buttons</span><a class="self-link" href="#reserved-buttons"></a></h3>
-    User Agents SHOULD reserve at least one physical button, when possible, for performing unspoofable actions as part of a <a data-link-type="dfn">trusted UI</a>. For example, the User Agent could designate the "menu" or "app" button present on many controllers as a dedicated button for exiting immersive presentation. 
+   
+User Agents SHOULD reserve at least one physical button, when possible, for performing unspoofable actions as part of a <u class="link-error" data-lt="trusted UI" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;trusted ui&apos; with spec &apos;webxr-1&apos;.">trusted UI</u>. For example, the User Agent could designate the "menu" or "app" button present on many controllers as a dedicated button for exiting immersive presentation.
+
+
    <p>Additionally, many XR platforms also reserve a button for platform specific actions, such as returning to a home environment.</p>
    <p>Buttons reserved by the UA or platform MUST NOT be exposed on the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad" id="ref-for-dom-gamepad①①">Gamepad</a></code>. Additionally, User Agents SHOULD make an effort to coordinate which buttons are reserved for a given XR platform. The <a href="https://github.com/immersive-web/webxr-input-profiles/tree/master/packages/registry">WebXR Input Profiles Registry</a> is the recommended location for coordinating button reservations.</p>
    <h3 class="heading settled" data-level="3.5" id="example-mappings"><span class="secno">3.5. </span><span class="content">Example Mappings</span><a class="self-link" href="#example-mappings"></a></h3>
-   <section class="note"> This diagram demonstrates how two example controllers would be exposed with the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard④">"xr-standard"</a></code> mapping. Images are not intended to represent any particular device and are used for reference purposes only. <img alt="Simple &apos;xr-standard&apos; controller and Advanced &apos;xr-standard&apos; controller" height="2530" src="images/xr-standard-mapping.svg" style="width: 750px; height: auto;" width="2100"> </section>
+   <section class="note">
+This diagram demonstrates how two example controllers would be exposed with the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard" id="ref-for-dom-gamepadmappingtype-xr-standard④">"xr-standard"</a></code> mapping. Images are not intended to represent any particular device and are used for reference purposes only. <img alt="Simple &apos;xr-standard&apos; controller and Advanced &apos;xr-standard&apos; controller" height="2530" src="images/xr-standard-mapping.svg" style="width: 750px; height: auto;" width="2100">
+</section>
    <h2 class="heading settled" data-level="4" id="security"><span class="secno">4. </span><span class="content">Security and Privacy</span><a class="self-link" href="#security"></a></h2>
    <p>The WebXR Device API provides powerful new features which bring with them several unique privacy, security, and comfort risks that user agents must take steps to mitigate. This topic is covered in detail as part of the <a href="https://www.w3.org/TR/webxr/">WebXR Device API</a>. This module adds additional considerations, but does not change the fundamental <a href="https://immersive-web.github.io/webxr/#security">WebXR security and privacy</a> principles.</p>
    <h3 class="heading settled" data-level="4.1" id="fingerprinting-security"><span class="secno">4.1. </span><span class="content">Fingerprinting</span><a class="self-link" href="#fingerprinting-security"></a></h3>
-   <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. As defined in the WebXR Device API, <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①⑤">XRInputSource</a></code>s are only reported after an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrsession" id="ref-for-xrsession①">XRSession</a></code> has been created, which requires additional protections when <a data-link-type="dfn">sensitive information</a> will be exposed. In addition, this module requires <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①⑥">XRInputSource</a></code>'s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①③">gamepad</a></code>.<code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-id" id="ref-for-dom-gamepad-id①">id</a></code> to not report a string identifiers.</p>
-   <h2 class="no-num heading settled" id="changes"><span class="content"> Changes</span><a class="self-link" href="#changes"></a></h2>
-   <h3 class="no-num heading settled" id="changes-from-20191010"><span class="content"> Changes from the <a href="https://www.w3.org/TR/2019/WD-webxr-gamepads-module-1-20191010/">First Public Working Draft 10 October 2019</a></span><a class="self-link" href="#changes-from-20191010"></a></h3>
+   <p>Given that the API describes hardware available to the user and its capabilities it will inevitably provide additional surface area for fingerprinting. While it’s impossible to completely avoid this, user agents should take steps to mitigate the issue. As defined in the WebXR Device API, <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①⑤">XRInputSource</a></code>s are only reported after an <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrsession" id="ref-for-xrsession①">XRSession</a></code> has been created, which requires additional protections when <u class="link-error" data-lt="sensitive information" title="LINK ERROR: No &apos;dfn&apos; refs found for &apos;sensitive information&apos; with spec &apos;webxr-1&apos;.">sensitive information</u> will be exposed. In addition, this module requires <code class="idl"><a data-link-type="idl" href="https://immersive-web.github.io/webxr/#xrinputsource" id="ref-for-xrinputsource①⑥">XRInputSource</a></code>’s <code class="idl"><a data-link-type="idl" href="#dom-xrinputsource-gamepad" id="ref-for-dom-xrinputsource-gamepad①③">gamepad</a></code>.<code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/gamepad/#dom-gamepad-id" id="ref-for-dom-gamepad-id①">id</a></code> to not report a string identifiers.</p>
+   <h2 class="no-num heading settled" id="changes"><span class="content">
+Changes</span><a class="self-link" href="#changes"></a></h2>
+   <h3 class="no-num heading settled" id="changes-from-20191010"><span class="content">
+Changes from the <a href="https://www.w3.org/TR/2019/WD-webxr-gamepads-module-1-20191010/">First Public Working Draft 10 October 2019</a></span><a class="self-link" href="#changes-from-20191010"></a></h3>
    <ul>
     <li data-md>
      <p>Explicitly leave Gamepad API Integration up to the user agent (<a href="https://github.com/immersive-web/webxr-gamepads-module/pull/49">GitHub #49</a>)</p>
@@ -982,21 +1081,31 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     in the normative parts of this document
     are to be interpreted as described in RFC 2119.
     However, for readability,
-    these words do not appear in all uppercase letters in this specification. </p>
+    these words do not appear in all uppercase letters in this specification.
+
+    </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>
+
+    </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <div class="example" id="w3c-example">
-    <a class="self-link" href="#w3c-example"></a> 
-    <p>This is an example of an informative example. </p>
+    <a class="self-link" href="#w3c-example"></a>
+        
+    <p>This is an example of an informative example.
+    </p>
    </div>
    <p>Informative notes begin with the word “Note”
     and are set apart from the normative text
     with <code>class="note"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <p class="note" role="note">Note, this is an informative note.</p>
    <section>
     <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
@@ -1005,17 +1114,20 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     or "return false and abort these steps")
     are to be interpreted with the meaning of the key word
     ("must", "should", "may", etc)
-    used in introducing the algorithm. </p>
+    used in introducing the algorithm.
+
+    </p>
     <p>Conformance requirements phrased as algorithms or specific steps
     can be implemented in any manner,
     so long as the end result is equivalent.
     In particular, the algorithms defined in this specification
     are intended to be easy to understand
     and are not intended to be performant.
-    Implementers are encouraged to optimize. </p>
+    Implementers are encouraged to optimize.
+</p>
    </section>
   </div>
-<script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
+  <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
@@ -1095,348 +1207,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 };
 
 </pre>
-<script>/* Boilerplate: script-dfn-panel */
-"use strict";
-{
-    const dfnsJson = window.dfnsJson || {};
-
-    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
-        return mk.aside({
-            class: "dfn-panel",
-            id: `infopanel-for-${dfnID}`,
-            "data-for": dfnID,
-            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
-            },
-            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
-                `Info about the '${dfnText}' ${external?"external":""} reference.`),
-            mk.a({href:url}, url),
-            mk.b({}, "Referenced in:"),
-            mk.ul({},
-                ...refSections.map(section=>
-                    mk.li({},
-                        ...section.refs.map((ref, refI)=>
-                            [
-                                mk.a({
-                                    href: `#${ref.id}`
-                                    },
-                                    (refI == 0) ? section.title : `(${refI + 1})`
-                                ),
-                                " ",
-                            ]
-                        ),
-                    ),
-                ),
-            ),
-        );
-    }
-
-    function genAllDfnPanels() {
-        for(const panelData of Object.values(window.dfnpanelData)) {
-            const dfnID = panelData.dfnID;
-            const dfn = document.getElementById(dfnID);
-            if(!dfn) {
-                console.log(`Can't find dfn#${dfnID}.`, panelData);
-            } else {
-                const panel = genDfnPanel(panelData);
-                append(document.body, panel);
-                insertDfnPopupAction(dfn, panel)
-            }
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", ()=>{
-        genAllDfnPanels();
-
-        // Add popup behavior to all dfns to show the corresponding dfn-panel.
-        var dfns = queryAll('.dfn-paneled');
-        for(let dfn of dfns) { ; }
-
-        document.body.addEventListener("click", (e) => {
-            // If not handled already, just hide all dfn panels.
-            hideAllDfnPanels();
-        });
-    })
-
-
-    function hideAllDfnPanels() {
-        // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
-    }
-
-    function showDfnPanel(dfnPanel, dfn) {
-        hideAllDfnPanels(); // Only display one at this time.
-        dfn.setAttribute("aria-expanded", "true");
-        dfnPanel.classList.add("on");
-        dfnPanel.style.left = "5px";
-        dfnPanel.style.top = "0px";
-        const panelRect = dfnPanel.getBoundingClientRect();
-        const panelWidth = panelRect.right - panelRect.left;
-        if (panelRect.right > document.body.scrollWidth) {
-            // Panel's overflowing the screen.
-            // Just drop it below the dfn and flip it rightward instead.
-            // This still wont' fix things if the screen is *really* wide,
-            // but fixing that's a lot harder without 'anchor()'.
-            dfnPanel.style.top = "1.5em";
-            dfnPanel.style.left = "auto";
-            dfnPanel.style.right = "0px";
-        }
-    }
-
-    function pinDfnPanel(dfnPanel) {
-        // Switch it to "activated" state, which pins it.
-        dfnPanel.classList.add("activated");
-        dfnPanel.style.left = null;
-        dfnPanel.style.top = null;
-    }
-
-    function hideDfnPanel(dfnPanel, dfn) {
-        if(!dfn) {
-            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
-        }
-        dfn.setAttribute("aria-expanded", "false")
-        dfnPanel.classList.remove("on");
-        dfnPanel.classList.remove("activated");
-    }
-
-    function toggleDfnPanel(dfnPanel, dfn) {
-        if(dfnPanel.classList.contains("on")) {
-            hideDfnPanel(dfnPanel, dfn);
-        } else {
-            showDfnPanel(dfnPanel, dfn);
-        }
-    }
-
-    function insertDfnPopupAction(dfn, dfnPanel) {
-        // Find dfn panel
-        const panelWrapper = document.createElement('span');
-        panelWrapper.appendChild(dfnPanel);
-        panelWrapper.style.position = "relative";
-        panelWrapper.style.height = "0px";
-        dfn.insertAdjacentElement("afterend", panelWrapper);
-        dfn.setAttribute('role', 'button');
-        dfn.setAttribute('aria-expanded', 'false')
-        dfn.tabIndex = 0;
-        dfn.classList.add('has-dfn-panel');
-        dfn.addEventListener('click', (event) => {
-            showDfnPanel(dfnPanel, dfn);
-            event.stopPropagation();
-        });
-        dfn.addEventListener('keypress', (event) => {
-            const kc = event.keyCode;
-            // 32->Space, 13->Enter
-            if(kc == 32 || kc == 13) {
-                toggleDfnPanel(dfnPanel, dfn);
-                event.stopPropagation();
-                event.preventDefault();
-            }
-        });
-
-        dfnPanel.addEventListener('click', (event) => {
-            if (event.target.nodeName == 'A') {
-                pinDfnPanel(dfnPanel);
-            }
-            event.stopPropagation();
-        });
-
-        dfnPanel.addEventListener('keydown', (event) => {
-            if(event.keyCode == 27) { // Escape key
-                hideDfnPanel(dfnPanel, dfn);
-                event.stopPropagation();
-                event.preventDefault();
-            }
-        })
-    }
-}
-</script>
-<script>/* Boilerplate: script-dfn-panel */
-"use strict";
-{
-    const dfnsJson = window.dfnsJson || {};
-
-    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
-        return mk.aside({
-            class: "dfn-panel",
-            id: `infopanel-for-${dfnID}`,
-            "data-for": dfnID,
-            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
-            },
-            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
-                `Info about the '${dfnText}' ${external?"external":""} reference.`),
-            mk.a({href:url}, url),
-            mk.b({}, "Referenced in:"),
-            mk.ul({},
-                ...refSections.map(section=>
-                    mk.li({},
-                        ...section.refs.map((ref, refI)=>
-                            [
-                                mk.a({
-                                    href: `#${ref.id}`
-                                    },
-                                    (refI == 0) ? section.title : `(${refI + 1})`
-                                ),
-                                " ",
-                            ]
-                        ),
-                    ),
-                ),
-            ),
-        );
-    }
-
-    function genAllDfnPanels() {
-        for(const panelData of Object.values(window.dfnpanelData)) {
-            const dfnID = panelData.dfnID;
-            const dfn = document.getElementById(dfnID);
-            if(!dfn) {
-                console.log(`Can't find dfn#${dfnID}.`, panelData);
-            } else {
-                const panel = genDfnPanel(panelData);
-                append(document.body, panel);
-                insertDfnPopupAction(dfn, panel)
-            }
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", ()=>{
-        genAllDfnPanels();
-
-        // Add popup behavior to all dfns to show the corresponding dfn-panel.
-        var dfns = queryAll('.dfn-paneled');
-        for(let dfn of dfns) { ; }
-
-        document.body.addEventListener("click", (e) => {
-            // If not handled already, just hide all dfn panels.
-            hideAllDfnPanels();
-        });
-    })
-
-
-    function hideAllDfnPanels() {
-        // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
-    }
-
-    function showDfnPanel(dfnPanel, dfn) {
-        hideAllDfnPanels(); // Only display one at this time.
-        dfn.setAttribute("aria-expanded", "true");
-        dfnPanel.classList.add("on");
-        dfnPanel.style.left = "5px";
-        dfnPanel.style.top = "0px";
-        const panelRect = dfnPanel.getBoundingClientRect();
-        const panelWidth = panelRect.right - panelRect.left;
-        if (panelRect.right > document.body.scrollWidth) {
-            // Panel's overflowing the screen.
-            // Just drop it below the dfn and flip it rightward instead.
-            // This still wont' fix things if the screen is *really* wide,
-            // but fixing that's a lot harder without 'anchor()'.
-            dfnPanel.style.top = "1.5em";
-            dfnPanel.style.left = "auto";
-            dfnPanel.style.right = "0px";
-        }
-    }
-
-    function pinDfnPanel(dfnPanel) {
-        // Switch it to "activated" state, which pins it.
-        dfnPanel.classList.add("activated");
-        dfnPanel.style.left = null;
-        dfnPanel.style.top = null;
-    }
-
-    function hideDfnPanel(dfnPanel, dfn) {
-        if(!dfn) {
-            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
-        }
-        dfn.setAttribute("aria-expanded", "false")
-        dfnPanel.classList.remove("on");
-        dfnPanel.classList.remove("activated");
-    }
-
-    function toggleDfnPanel(dfnPanel, dfn) {
-        if(dfnPanel.classList.contains("on")) {
-            hideDfnPanel(dfnPanel, dfn);
-        } else {
-            showDfnPanel(dfnPanel, dfn);
-        }
-    }
-
-    function insertDfnPopupAction(dfn, dfnPanel) {
-        // Find dfn panel
-        const panelWrapper = document.createElement('span');
-        panelWrapper.appendChild(dfnPanel);
-        panelWrapper.style.position = "relative";
-        panelWrapper.style.height = "0px";
-        dfn.insertAdjacentElement("afterend", panelWrapper);
-        dfn.setAttribute('role', 'button');
-        dfn.setAttribute('aria-expanded', 'false')
-        dfn.tabIndex = 0;
-        dfn.classList.add('has-dfn-panel');
-        dfn.addEventListener('click', (event) => {
-            showDfnPanel(dfnPanel, dfn);
-            event.stopPropagation();
-        });
-        dfn.addEventListener('keypress', (event) => {
-            const kc = event.keyCode;
-            // 32->Space, 13->Enter
-            if(kc == 32 || kc == 13) {
-                toggleDfnPanel(dfnPanel, dfn);
-                event.stopPropagation();
-                event.preventDefault();
-            }
-        });
-
-        dfnPanel.addEventListener('click', (event) => {
-            if (event.target.nodeName == 'A') {
-                pinDfnPanel(dfnPanel);
-            }
-            event.stopPropagation();
-        });
-
-        dfnPanel.addEventListener('keydown', (event) => {
-            if(event.keyCode == 27) { // Escape key
-                hideDfnPanel(dfnPanel, dfn);
-                event.stopPropagation();
-                event.preventDefault();
-            }
-        })
-    }
-}
-</script>
-<script>/* Boilerplate: script-dfn-panel-json */
-window.dfnpanelData = {};
-window.dfnpanelData['f37866fb'] = {"dfnID": "f37866fb", "url": "https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard", "dfnText": "\"xr-standard\"", "refSections": [{"refs": [{"id": "ref-for-dom-gamepadmappingtype-xr-standard"}, {"id": "ref-for-dom-gamepadmappingtype-xr-standard\u2460"}, {"id": "ref-for-dom-gamepadmappingtype-xr-standard\u2461"}, {"id": "ref-for-dom-gamepadmappingtype-xr-standard\u2462"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}, {"refs": [{"id": "ref-for-dom-gamepadmappingtype-xr-standard\u2463"}], "title": "3.5. Example Mappings"}], "external": true};
-window.dfnpanelData['d0dbb110'] = {"dfnID": "d0dbb110", "url": "https://www.w3.org/TR/gamepad/#dom-gamepad", "dfnText": "Gamepad", "refSections": [{"refs": [{"id": "ref-for-dom-gamepad"}, {"id": "ref-for-dom-gamepad\u2460"}, {"id": "ref-for-dom-gamepad\u2461"}], "title": "2.1. XRInputSource"}, {"refs": [{"id": "ref-for-dom-gamepad\u2462"}, {"id": "ref-for-dom-gamepad\u2463"}, {"id": "ref-for-dom-gamepad\u2464"}], "title": "3. Gamepad API Integration"}, {"refs": [{"id": "ref-for-dom-gamepad\u2465"}, {"id": "ref-for-dom-gamepad\u2466"}], "title": "3.1. Navigator"}, {"refs": [{"id": "ref-for-dom-gamepad\u2467"}, {"id": "ref-for-dom-gamepad\u2468"}], "title": "3.2. Gamepad"}, {"refs": [{"id": "ref-for-dom-gamepad\u2460\u24ea"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}, {"refs": [{"id": "ref-for-dom-gamepad\u2460\u2460"}], "title": "3.4. UA/Platform reserved buttons"}], "external": true};
-window.dfnpanelData['9c1dc7fb'] = {"dfnID": "9c1dc7fb", "url": "https://www.w3.org/TR/gamepad/#dom-gamepadbutton", "dfnText": "GamepadButton", "refSections": [{"refs": [{"id": "ref-for-dom-gamepadbutton"}], "title": "3.2. Gamepad"}], "external": true};
-window.dfnpanelData['99e7693d'] = {"dfnID": "99e7693d", "url": "https://www.w3.org/TR/gamepad/#dom-gamepad-axes", "dfnText": "axes", "refSections": [{"refs": [{"id": "ref-for-dom-gamepad-axes"}], "title": "3.2. Gamepad"}, {"refs": [{"id": "ref-for-dom-gamepad-axes\u2460"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": true};
-window.dfnpanelData['e18605c5'] = {"dfnID": "e18605c5", "url": "https://www.w3.org/TR/gamepad/#dom-gamepad-buttons", "dfnText": "buttons", "refSections": [{"refs": [{"id": "ref-for-dom-gamepad-buttons"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": true};
-window.dfnpanelData['168303e1'] = {"dfnID": "168303e1", "url": "https://www.w3.org/TR/gamepad/#dom-gamepad-connected", "dfnText": "connected", "refSections": [{"refs": [{"id": "ref-for-dom-gamepad-connected"}], "title": "3.2. Gamepad"}], "external": true};
-window.dfnpanelData['43385a1e'] = {"dfnID": "43385a1e", "url": "https://www.w3.org/TR/gamepad/#dom-gamepad-id", "dfnText": "id", "refSections": [{"refs": [{"id": "ref-for-dom-gamepad-id"}], "title": "3.2. Gamepad"}, {"refs": [{"id": "ref-for-dom-gamepad-id\u2460"}], "title": "4.1. Fingerprinting"}], "external": true};
-window.dfnpanelData['7fd696e8'] = {"dfnID": "7fd696e8", "url": "https://www.w3.org/TR/gamepad/#dom-gamepad-index", "dfnText": "index", "refSections": [{"refs": [{"id": "ref-for-dom-gamepad-index"}], "title": "3.2. Gamepad"}], "external": true};
-window.dfnpanelData['d2b5c4c1'] = {"dfnID": "d2b5c4c1", "url": "https://www.w3.org/TR/gamepad/#dom-gamepad-mapping", "dfnText": "mapping", "refSections": [{"refs": [{"id": "ref-for-dom-gamepad-mapping"}, {"id": "ref-for-dom-gamepad-mapping\u2460"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": true};
-window.dfnpanelData['da654da6'] = {"dfnID": "da654da6", "url": "https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads", "dfnText": "navigator.getGamepads()", "refSections": [{"refs": [{"id": "ref-for-dom-navigator-getgamepads"}], "title": "3. Gamepad API Integration"}, {"refs": [{"id": "ref-for-dom-navigator-getgamepads\u2460"}, {"id": "ref-for-dom-navigator-getgamepads\u2461"}], "title": "3.1. Navigator"}, {"refs": [{"id": "ref-for-dom-navigator-getgamepads\u2462"}], "title": "3.2. Gamepad"}], "external": true};
-window.dfnpanelData['e8c702a0'] = {"dfnID": "e8c702a0", "url": "https://www.w3.org/TR/gamepad/#dom-gamepadbutton-pressed", "dfnText": "pressed", "refSections": [{"refs": [{"id": "ref-for-dom-gamepadbutton-pressed"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": true};
-window.dfnpanelData['af9cf120'] = {"dfnID": "af9cf120", "url": "https://www.w3.org/TR/gamepad/#dfn-selecting-an-unused-gamepad-index", "dfnText": "select an unused gamepad index", "refSections": [{"refs": [{"id": "ref-for-dfn-selecting-an-unused-gamepad-index"}], "title": "3.2. Gamepad"}], "external": true};
-window.dfnpanelData['fc646f9d'] = {"dfnID": "fc646f9d", "url": "https://www.w3.org/TR/gamepad/#dom-gamepadbutton-touched", "dfnText": "touched", "refSections": [{"refs": [{"id": "ref-for-dom-gamepadbutton-touched"}], "title": "3.2. Gamepad"}, {"refs": [{"id": "ref-for-dom-gamepadbutton-touched\u2460"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": true};
-window.dfnpanelData['57f04869'] = {"dfnID": "57f04869", "url": "https://www.w3.org/TR/gamepad/#dom-gamepadbutton-value", "dfnText": "value", "refSections": [{"refs": [{"id": "ref-for-dom-gamepadbutton-value"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": true};
-window.dfnpanelData['a5c91173'] = {"dfnID": "a5c91173", "url": "https://webidl.spec.whatwg.org/#SameObject", "dfnText": "SameObject", "refSections": [{"refs": [{"id": "ref-for-SameObject"}], "title": "2.1. XRInputSource"}], "external": true};
-window.dfnpanelData['42c26937'] = {"dfnID": "42c26937", "url": "https://immersive-web.github.io/webxr/#dom-xrtargetraymode-tracked-pointer", "dfnText": "\"tracked-pointer\"", "refSections": [{"refs": [{"id": "ref-for-dom-xrtargetraymode-tracked-pointer"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": true};
-window.dfnpanelData['7a030114'] = {"dfnID": "7a030114", "url": "https://immersive-web.github.io/webxr/#xrframe", "dfnText": "XRFrame", "refSections": [{"refs": [{"id": "ref-for-xrframe"}], "title": "2.2. XRSession"}], "external": true};
-window.dfnpanelData['ea90e02f'] = {"dfnID": "ea90e02f", "url": "https://immersive-web.github.io/webxr/#xrinputsource", "dfnText": "XRInputSource", "refSections": [{"refs": [{"id": "ref-for-xrinputsource"}, {"id": "ref-for-xrinputsource\u2460"}], "title": "2. WebXR Device API Integration"}, {"refs": [{"id": "ref-for-xrinputsource\u2461"}, {"id": "ref-for-xrinputsource\u2462"}], "title": "2.1. XRInputSource"}, {"refs": [{"id": "ref-for-xrinputsource\u2463"}, {"id": "ref-for-xrinputsource\u2464"}, {"id": "ref-for-xrinputsource\u2465"}, {"id": "ref-for-xrinputsource\u2466"}], "title": "2.2. XRSession"}, {"refs": [{"id": "ref-for-xrinputsource\u2467"}, {"id": "ref-for-xrinputsource\u2468"}, {"id": "ref-for-xrinputsource\u2460\u24ea"}], "title": "3. Gamepad API Integration"}, {"refs": [{"id": "ref-for-xrinputsource\u2460\u2460"}], "title": "3.1. Navigator"}, {"refs": [{"id": "ref-for-xrinputsource\u2460\u2461"}, {"id": "ref-for-xrinputsource\u2460\u2462"}], "title": "3.2. Gamepad"}, {"refs": [{"id": "ref-for-xrinputsource\u2460\u2463"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}, {"refs": [{"id": "ref-for-xrinputsource\u2460\u2464"}, {"id": "ref-for-xrinputsource\u2460\u2465"}], "title": "4.1. Fingerprinting"}], "external": true};
-window.dfnpanelData['b23556e5'] = {"dfnID": "b23556e5", "url": "https://immersive-web.github.io/webxr/#xrsession", "dfnText": "XRSession", "refSections": [{"refs": [{"id": "ref-for-xrsession"}], "title": "3.2. Gamepad"}, {"refs": [{"id": "ref-for-xrsession\u2460"}], "title": "4.1. Fingerprinting"}], "external": true};
-window.dfnpanelData['de78be73'] = {"dfnID": "de78be73", "url": "https://immersive-web.github.io/webxr/#dom-xrinputsource-gripspace", "dfnText": "gripSpace", "refSections": [{"refs": [{"id": "ref-for-dom-xrinputsource-gripspace"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": true};
-window.dfnpanelData['4bb10651'] = {"dfnID": "4bb10651", "url": "https://immersive-web.github.io/webxr/#dom-xrsession-inputsources", "dfnText": "inputSources", "refSections": [{"refs": [{"id": "ref-for-dom-xrsession-inputsources"}, {"id": "ref-for-dom-xrsession-inputsources\u2460"}], "title": "2.2. XRSession"}], "external": true};
-window.dfnpanelData['7c7eccf9'] = {"dfnID": "7c7eccf9", "url": "https://immersive-web.github.io/webxr/#dom-xrframe-session", "dfnText": "session", "refSections": [{"refs": [{"id": "ref-for-dom-xrframe-session"}], "title": "2.2. XRSession"}], "external": true};
-window.dfnpanelData['fb050ffc'] = {"dfnID": "fb050ffc", "url": "https://immersive-web.github.io/webxr/#dom-xrinputsource-targetraymode", "dfnText": "targetRayMode", "refSections": [{"refs": [{"id": "ref-for-dom-xrinputsource-targetraymode"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": true};
-window.dfnpanelData['c5fba419'] = {"dfnID": "c5fba419", "url": "https://www.w3.org/TR/webxr/#xrsession-list-of-frame-updates", "dfnText": "list of frame updates", "refSections": [{"refs": [{"id": "ref-for-xrsession-list-of-frame-updates"}], "title": "2.2. XRSession"}], "external": true};
-window.dfnpanelData['a1afb5ed'] = {"dfnID": "a1afb5ed", "url": "https://www.w3.org/TR/webxr/#xrframe-time", "dfnText": "time", "refSections": [{"refs": [{"id": "ref-for-xrframe-time"}], "title": "2.2. XRSession"}], "external": true};
-window.dfnpanelData['xr-input-source'] = {"dfnID": "xr-input-source", "url": "#xr-input-source", "dfnText": "XR input source", "refSections": [{"refs": [{"id": "ref-for-xr-input-source"}, {"id": "ref-for-xr-input-source\u2460"}], "title": "2. WebXR Device API Integration"}, {"refs": [{"id": "ref-for-xr-input-source\u2461"}, {"id": "ref-for-xr-input-source\u2462"}], "title": "2.1. XRInputSource"}], "external": false};
-window.dfnpanelData['dom-xrinputsource-gamepad'] = {"dfnID": "dom-xrinputsource-gamepad", "url": "#dom-xrinputsource-gamepad", "dfnText": "gamepad", "refSections": [{"refs": [{"id": "ref-for-dom-xrinputsource-gamepad"}], "title": "2.1. XRInputSource"}, {"refs": [{"id": "ref-for-dom-xrinputsource-gamepad\u2460"}, {"id": "ref-for-dom-xrinputsource-gamepad\u2461"}, {"id": "ref-for-dom-xrinputsource-gamepad\u2462"}], "title": "2.2. XRSession"}, {"refs": [{"id": "ref-for-dom-xrinputsource-gamepad\u2463"}], "title": "3. Gamepad API Integration"}, {"refs": [{"id": "ref-for-dom-xrinputsource-gamepad\u2464"}], "title": "3.1. Navigator"}, {"refs": [{"id": "ref-for-dom-xrinputsource-gamepad\u2465"}, {"id": "ref-for-dom-xrinputsource-gamepad\u2466"}, {"id": "ref-for-dom-xrinputsource-gamepad\u2467"}, {"id": "ref-for-dom-xrinputsource-gamepad\u2468"}, {"id": "ref-for-dom-xrinputsource-gamepad\u2460\u24ea"}], "title": "3.2. Gamepad"}, {"refs": [{"id": "ref-for-dom-xrinputsource-gamepad\u2460\u2460"}, {"id": "ref-for-dom-xrinputsource-gamepad\u2460\u2461"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}, {"refs": [{"id": "ref-for-dom-xrinputsource-gamepad\u2460\u2462"}], "title": "4.1. Fingerprinting"}], "external": false};
-window.dfnpanelData['xrframe-apply-gamepad-frame-updates'] = {"dfnID": "xrframe-apply-gamepad-frame-updates", "url": "#xrframe-apply-gamepad-frame-updates", "dfnText": "apply gamepad frame updates", "refSections": [{"refs": [{"id": "ref-for-xrframe-apply-gamepad-frame-updates"}], "title": "2.2. XRSession"}], "external": false};
-window.dfnpanelData['primary-trigger'] = {"dfnID": "primary-trigger", "url": "#primary-trigger", "dfnText": "primary trigger", "refSections": [{"refs": [{"id": "ref-for-primary-trigger"}, {"id": "ref-for-primary-trigger\u2460"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": false};
-window.dfnpanelData['primary-squeeze-button'] = {"dfnID": "primary-squeeze-button", "url": "#primary-squeeze-button", "dfnText": "primary squeeze button", "refSections": [{"refs": [{"id": "ref-for-primary-squeeze-button"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": false};
-window.dfnpanelData['placeholder-button'] = {"dfnID": "placeholder-button", "url": "#placeholder-button", "dfnText": "placeholder button", "refSections": [{"refs": [{"id": "ref-for-placeholder-button"}, {"id": "ref-for-placeholder-button\u2460"}, {"id": "ref-for-placeholder-button\u2461"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": false};
-window.dfnpanelData['placeholder-axis'] = {"dfnID": "placeholder-axis", "url": "#placeholder-axis", "dfnText": "placeholder axis", "refSections": [{"refs": [{"id": "ref-for-placeholder-axis"}, {"id": "ref-for-placeholder-axis\u2460"}, {"id": "ref-for-placeholder-axis\u2461"}], "title": "3.3. \"xr-standard\" Gamepad Mapping"}], "external": false};
-</script>
 <script>/* Boilerplate: script-dom-helper */
+"use strict";
 function query(sel) { return document.querySelector(sel); }
 
 function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
@@ -1630,5 +1402,664 @@ function parseHTML(markup) {
 		el.innerHTML = markup;
 		return el.content;
 	}
+}</script>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+let dfnPanelData = {
+"168303e1": {"dfnID":"168303e1","dfnText":"connected","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepad-connected"}],"title":"3.2. Gamepad"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepad-connected"},
+"42c26937": {"dfnID":"42c26937","dfnText":"\"tracked-pointer\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-xrtargetraymode-tracked-pointer"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"https://immersive-web.github.io/webxr/#dom-xrtargetraymode-tracked-pointer"},
+"43385a1e": {"dfnID":"43385a1e","dfnText":"id","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepad-id"}],"title":"3.2. Gamepad"},{"refs":[{"id":"ref-for-dom-gamepad-id\u2460"}],"title":"4.1. Fingerprinting"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepad-id"},
+"4bb10651": {"dfnID":"4bb10651","dfnText":"inputSources","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-xrsession-inputsources"},{"id":"ref-for-dom-xrsession-inputsources\u2460"}],"title":"2.2. XRSession"}],"url":"https://immersive-web.github.io/webxr/#dom-xrsession-inputsources"},
+"57f04869": {"dfnID":"57f04869","dfnText":"value","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepadbutton-value"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepadbutton-value"},
+"7a030114": {"dfnID":"7a030114","dfnText":"XRFrame","external":true,"refSections":[{"refs":[{"id":"ref-for-xrframe"}],"title":"2.2. XRSession"}],"url":"https://immersive-web.github.io/webxr/#xrframe"},
+"7c7eccf9": {"dfnID":"7c7eccf9","dfnText":"session","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-xrframe-session"}],"title":"2.2. XRSession"}],"url":"https://immersive-web.github.io/webxr/#dom-xrframe-session"},
+"7fd696e8": {"dfnID":"7fd696e8","dfnText":"index","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepad-index"}],"title":"3.2. Gamepad"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepad-index"},
+"99e7693d": {"dfnID":"99e7693d","dfnText":"axes","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepad-axes"}],"title":"3.2. Gamepad"},{"refs":[{"id":"ref-for-dom-gamepad-axes\u2460"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepad-axes"},
+"9c1dc7fb": {"dfnID":"9c1dc7fb","dfnText":"GamepadButton","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepadbutton"}],"title":"3.2. Gamepad"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepadbutton"},
+"a1afb5ed": {"dfnID":"a1afb5ed","dfnText":"time","external":true,"refSections":[{"refs":[{"id":"ref-for-xrframe-time"}],"title":"2.2. XRSession"}],"url":"https://www.w3.org/TR/webxr/#xrframe-time"},
+"a5c91173": {"dfnID":"a5c91173","dfnText":"SameObject","external":true,"refSections":[{"refs":[{"id":"ref-for-SameObject"}],"title":"2.1. XRInputSource"}],"url":"https://webidl.spec.whatwg.org/#SameObject"},
+"af9cf120": {"dfnID":"af9cf120","dfnText":"select an unused gamepad index","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-selecting-an-unused-gamepad-index"}],"title":"3.2. Gamepad"}],"url":"https://www.w3.org/TR/gamepad/#dfn-selecting-an-unused-gamepad-index"},
+"b23556e5": {"dfnID":"b23556e5","dfnText":"XRSession","external":true,"refSections":[{"refs":[{"id":"ref-for-xrsession"}],"title":"3.2. Gamepad"},{"refs":[{"id":"ref-for-xrsession\u2460"}],"title":"4.1. Fingerprinting"}],"url":"https://immersive-web.github.io/webxr/#xrsession"},
+"c5fba419": {"dfnID":"c5fba419","dfnText":"list of frame updates","external":true,"refSections":[{"refs":[{"id":"ref-for-xrsession-list-of-frame-updates"}],"title":"2.2. XRSession"}],"url":"https://www.w3.org/TR/webxr/#xrsession-list-of-frame-updates"},
+"d0dbb110": {"dfnID":"d0dbb110","dfnText":"Gamepad","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepad"},{"id":"ref-for-dom-gamepad\u2460"},{"id":"ref-for-dom-gamepad\u2461"}],"title":"2.1. XRInputSource"},{"refs":[{"id":"ref-for-dom-gamepad\u2462"},{"id":"ref-for-dom-gamepad\u2463"},{"id":"ref-for-dom-gamepad\u2464"}],"title":"3. Gamepad API Integration"},{"refs":[{"id":"ref-for-dom-gamepad\u2465"},{"id":"ref-for-dom-gamepad\u2466"}],"title":"3.1. Navigator"},{"refs":[{"id":"ref-for-dom-gamepad\u2467"},{"id":"ref-for-dom-gamepad\u2468"}],"title":"3.2. Gamepad"},{"refs":[{"id":"ref-for-dom-gamepad\u2460\u24ea"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"},{"refs":[{"id":"ref-for-dom-gamepad\u2460\u2460"}],"title":"3.4. UA/Platform reserved buttons"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepad"},
+"d2b5c4c1": {"dfnID":"d2b5c4c1","dfnText":"mapping","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepad-mapping"},{"id":"ref-for-dom-gamepad-mapping\u2460"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepad-mapping"},
+"da654da6": {"dfnID":"da654da6","dfnText":"navigator.getGamepads()","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-navigator-getgamepads"}],"title":"3. Gamepad API Integration"},{"refs":[{"id":"ref-for-dom-navigator-getgamepads\u2460"},{"id":"ref-for-dom-navigator-getgamepads\u2461"}],"title":"3.1. Navigator"},{"refs":[{"id":"ref-for-dom-navigator-getgamepads\u2462"}],"title":"3.2. Gamepad"}],"url":"https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads"},
+"de78be73": {"dfnID":"de78be73","dfnText":"gripSpace","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-xrinputsource-gripspace"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"https://immersive-web.github.io/webxr/#dom-xrinputsource-gripspace"},
+"dom-xrinputsource-gamepad": {"dfnID":"dom-xrinputsource-gamepad","dfnText":"gamepad","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-xrinputsource-gamepad"}],"title":"2.1. XRInputSource"},{"refs":[{"id":"ref-for-dom-xrinputsource-gamepad\u2460"},{"id":"ref-for-dom-xrinputsource-gamepad\u2461"},{"id":"ref-for-dom-xrinputsource-gamepad\u2462"}],"title":"2.2. XRSession"},{"refs":[{"id":"ref-for-dom-xrinputsource-gamepad\u2463"}],"title":"3. Gamepad API Integration"},{"refs":[{"id":"ref-for-dom-xrinputsource-gamepad\u2464"}],"title":"3.1. Navigator"},{"refs":[{"id":"ref-for-dom-xrinputsource-gamepad\u2465"},{"id":"ref-for-dom-xrinputsource-gamepad\u2466"},{"id":"ref-for-dom-xrinputsource-gamepad\u2467"},{"id":"ref-for-dom-xrinputsource-gamepad\u2468"},{"id":"ref-for-dom-xrinputsource-gamepad\u2460\u24ea"}],"title":"3.2. Gamepad"},{"refs":[{"id":"ref-for-dom-xrinputsource-gamepad\u2460\u2460"},{"id":"ref-for-dom-xrinputsource-gamepad\u2460\u2461"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"},{"refs":[{"id":"ref-for-dom-xrinputsource-gamepad\u2460\u2462"}],"title":"4.1. Fingerprinting"}],"url":"#dom-xrinputsource-gamepad"},
+"e18605c5": {"dfnID":"e18605c5","dfnText":"buttons","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepad-buttons"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepad-buttons"},
+"e8c702a0": {"dfnID":"e8c702a0","dfnText":"pressed","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepadbutton-pressed"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepadbutton-pressed"},
+"ea90e02f": {"dfnID":"ea90e02f","dfnText":"XRInputSource","external":true,"refSections":[{"refs":[{"id":"ref-for-xrinputsource"},{"id":"ref-for-xrinputsource\u2460"}],"title":"2. WebXR Device API Integration"},{"refs":[{"id":"ref-for-xrinputsource\u2461"},{"id":"ref-for-xrinputsource\u2462"}],"title":"2.1. XRInputSource"},{"refs":[{"id":"ref-for-xrinputsource\u2463"},{"id":"ref-for-xrinputsource\u2464"},{"id":"ref-for-xrinputsource\u2465"},{"id":"ref-for-xrinputsource\u2466"}],"title":"2.2. XRSession"},{"refs":[{"id":"ref-for-xrinputsource\u2467"},{"id":"ref-for-xrinputsource\u2468"},{"id":"ref-for-xrinputsource\u2460\u24ea"}],"title":"3. Gamepad API Integration"},{"refs":[{"id":"ref-for-xrinputsource\u2460\u2460"}],"title":"3.1. Navigator"},{"refs":[{"id":"ref-for-xrinputsource\u2460\u2461"},{"id":"ref-for-xrinputsource\u2460\u2462"}],"title":"3.2. Gamepad"},{"refs":[{"id":"ref-for-xrinputsource\u2460\u2463"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"},{"refs":[{"id":"ref-for-xrinputsource\u2460\u2464"},{"id":"ref-for-xrinputsource\u2460\u2465"}],"title":"4.1. Fingerprinting"}],"url":"https://immersive-web.github.io/webxr/#xrinputsource"},
+"f37866fb": {"dfnID":"f37866fb","dfnText":"\"xr-standard\"","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepadmappingtype-xr-standard"},{"id":"ref-for-dom-gamepadmappingtype-xr-standard\u2460"},{"id":"ref-for-dom-gamepadmappingtype-xr-standard\u2461"},{"id":"ref-for-dom-gamepadmappingtype-xr-standard\u2462"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"},{"refs":[{"id":"ref-for-dom-gamepadmappingtype-xr-standard\u2463"}],"title":"3.5. Example Mappings"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard"},
+"fb050ffc": {"dfnID":"fb050ffc","dfnText":"targetRayMode","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-xrinputsource-targetraymode"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"https://immersive-web.github.io/webxr/#dom-xrinputsource-targetraymode"},
+"fc646f9d": {"dfnID":"fc646f9d","dfnText":"touched","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-gamepadbutton-touched"}],"title":"3.2. Gamepad"},{"refs":[{"id":"ref-for-dom-gamepadbutton-touched\u2460"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"https://www.w3.org/TR/gamepad/#dom-gamepadbutton-touched"},
+"placeholder-axis": {"dfnID":"placeholder-axis","dfnText":"placeholder axis","external":false,"refSections":[{"refs":[{"id":"ref-for-placeholder-axis"},{"id":"ref-for-placeholder-axis\u2460"},{"id":"ref-for-placeholder-axis\u2461"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"#placeholder-axis"},
+"placeholder-button": {"dfnID":"placeholder-button","dfnText":"placeholder button","external":false,"refSections":[{"refs":[{"id":"ref-for-placeholder-button"},{"id":"ref-for-placeholder-button\u2460"},{"id":"ref-for-placeholder-button\u2461"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"#placeholder-button"},
+"primary-squeeze-button": {"dfnID":"primary-squeeze-button","dfnText":"primary squeeze button","external":false,"refSections":[{"refs":[{"id":"ref-for-primary-squeeze-button"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"#primary-squeeze-button"},
+"primary-trigger": {"dfnID":"primary-trigger","dfnText":"primary trigger","external":false,"refSections":[{"refs":[{"id":"ref-for-primary-trigger"},{"id":"ref-for-primary-trigger\u2460"}],"title":"3.3. \"xr-standard\" Gamepad Mapping"}],"url":"#primary-trigger"},
+"xr-input-source": {"dfnID":"xr-input-source","dfnText":"XR input source","external":false,"refSections":[{"refs":[{"id":"ref-for-xr-input-source"},{"id":"ref-for-xr-input-source\u2460"}],"title":"2. WebXR Device API Integration"},{"refs":[{"id":"ref-for-xr-input-source\u2461"},{"id":"ref-for-xr-input-source\u2462"}],"title":"2.1. XRInputSource"}],"url":"#xr-input-source"},
+"xr-standard-gamepad-mapping": {"dfnID":"xr-standard-gamepad-mapping","dfnText":"\"xr-standard\" Gamepad Mapping","external":false,"refSections":[],"url":"#xr-standard-gamepad-mapping"},
+"xrframe-apply-gamepad-frame-updates": {"dfnID":"xrframe-apply-gamepad-frame-updates","dfnText":"apply gamepad frame updates","external":false,"refSections":[{"refs":[{"id":"ref-for-xrframe-apply-gamepad-frame-updates"}],"title":"2.2. XRSession"}],"url":"#xrframe-apply-gamepad-frame-updates"},
+};
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    genAllDfnPanels();
+
+    document.body.addEventListener("click", (e) => {
+        // If not handled already, just hide all dfn panels.
+        hideAllDfnPanels();
+    });
+});
+
+window.addEventListener("resize", () => {
+    // Pin any visible dfn panel
+    queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>positionDfnPanel(el));
+});
+
+function genAllDfnPanels() {
+    for(const panelData of Object.values(dfnPanelData)) {
+        const dfnID = panelData.dfnID;
+        const dfn = document.getElementById(dfnID);
+        if(!dfn) {
+            console.log(`Can't find dfn#${dfnID}.`, panelData);
+            continue;
+        }
+        dfn.panelData = panelData;
+        insertDfnPopupAction(dfn);
+    }
+}
+
+function genDfnPanel(dfn, { dfnID, url, dfnText, refSections, external }) {
+    const dfnPanel = mk.aside({
+        class: "dfn-panel on",
+        id: `infopanel-for-${dfnID}`,
+        "data-for": dfnID,
+        "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+        },
+        mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+            `Info about the '${dfnText}' ${external?"external":""} reference.`),
+        mk.a({href:url, class:"dfn-link"}, url),
+        refSections.length == 0 ? [] :
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({ href: `#${ref.id}` },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        genLinkingSyntaxes(dfn),
+    );
+
+    dfnPanel.addEventListener('click', (event) => {
+        if (event.target.nodeName == 'A') {
+            scrollToTargetAndHighlight(event);
+            pinDfnPanel(dfnPanel);
+        }
+        event.stopPropagation();
+        refocusOnTarget(event);
+    });
+    dfnPanel.addEventListener('keydown', (event) => {
+        if(event.keyCode == 27) { // Escape key
+            hideDfnPanel({dfnPanel});
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    });
+
+    dfnPanel.dfn = dfn;
+    dfn.dfnPanel = dfnPanel;
+    return dfnPanel;
+}
+
+
+
+function hideAllDfnPanels() {
+    // Delete the currently-active dfn panel.
+    queryAll(".dfn-panel").forEach(dfnPanel=>hideDfnPanel({dfnPanel}));
+}
+
+function showDfnPanel(dfn) {
+    hideAllDfnPanels(); // Only display one at a time.
+
+    dfn.setAttribute("aria-expanded", "true");
+
+    const dfnPanel = genDfnPanel(dfn, dfn.panelData);
+
+    // Give the dfn a unique tabindex, and then
+    // give all the tabbable panel bits successive indexes.
+    let tabIndex = 100;
+    dfn.tabIndex = tabIndex++;
+    const tabbable = dfnPanel.querySelectorAll(":is(a, button)");
+    for (const el of tabbable) {
+        el.tabIndex = tabIndex++;
+    }
+
+    append(document.body, dfnPanel);
+    positionDfnPanel(dfnPanel);
+}
+
+function positionDfnPanel(dfnPanel) {
+    const dfn = dfnPanel.dfn;
+    const dfnPos = getBounds(dfn);
+    dfnPanel.style.top = dfnPos.bottom + "px";
+    dfnPanel.style.left = dfnPos.left + "px";
+
+    const panelPos = dfnPanel.getBoundingClientRect();
+    const panelMargin = 8;
+    const maxRight = document.body.parentNode.clientWidth - panelMargin;
+    if (panelPos.right > maxRight) {
+        const overflowAmount = panelPos.right - maxRight;
+        const newLeft = Math.max(panelMargin, dfnPos.left - overflowAmount);
+        dfnPanel.style.left = newLeft + "px";
+    }
+}
+
+function pinDfnPanel(dfnPanel) {
+    // Switch it to "activated" state, which pins it.
+    dfnPanel.classList.add("activated");
+    dfnPanel.style.position = "fixed";
+    dfnPanel.style.left = null;
+    dfnPanel.style.top = null;
+}
+
+function hideDfnPanel({dfn, dfnPanel}) {
+    if(!dfnPanel) dfnPanel = dfn.dfnPanel;
+    if(!dfn) dfn = dfnPanel.dfn;
+    dfn.dfnPanel = undefined;
+    dfnPanel.dfn = undefined;
+    dfn.setAttribute("aria-expanded", "false");
+    dfn.tabIndex = undefined;
+    dfnPanel.remove()
+}
+
+function toggleDfnPanel(dfn) {
+    if(dfn.dfnPanel) {
+        hideDfnPanel(dfn);
+    } else {
+        showDfnPanel(dfn);
+    }
+}
+
+function insertDfnPopupAction(dfn) {
+    dfn.setAttribute('role', 'button');
+    dfn.setAttribute('aria-expanded', 'false')
+    dfn.tabIndex = 0;
+    dfn.classList.add('has-dfn-panel');
+    dfn.addEventListener('click', (event) => {
+        toggleDfnPanel(dfn);
+        event.stopPropagation();
+    });
+    dfn.addEventListener('keypress', (event) => {
+        const kc = event.keyCode;
+        // 32->Space, 13->Enter
+        if(kc == 32 || kc == 13) {
+            toggleDfnPanel(dfn);
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    });
+}
+
+function refocusOnTarget(event) {
+    const target = event.target;
+    setTimeout(() => {
+        // Refocus on the event.target element.
+        // This is needed after browser scrolls to the destination.
+        target.focus();
+    });
+}
+
+// TODO: shared util
+// Returns the root-level absolute position {left and top} of element.
+function getBounds(el, relativeTo=document.body) {
+    const relativeRect = relativeTo.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const top = elRect.top - relativeRect.top;
+    const left = elRect.left - relativeRect.left;
+    return {
+        top,
+        left,
+        bottom: top + elRect.height,
+        right: left + elRect.width,
+    }
+}
+
+function scrollToTargetAndHighlight(event) {
+    let hash = event.target.hash;
+    if (hash) {
+        hash = decodeURIComponent(hash.substring(1));
+        const dest = document.getElementById(hash);
+        if (dest) {
+            dest.classList.add('highlighted');
+            setTimeout(() => dest.classList.remove('highlighted'), 1000);
+        }
+    }
+}
+
+// Functions, divided by link type, that wrap an autolink's
+// contents with the appropriate outer syntax.
+// Alternately, a string naming another type they format
+// the same as.
+function needsFor(type) {
+    switch(type) {
+        case "descriptor":
+        case "value":
+        case "element-attr":
+        case "attr-value":
+        case "element-state":
+        case "method":
+        case "constructor":
+        case "argument":
+        case "attribute":
+        case "const":
+        case "dict-member":
+        case "event":
+        case "enum-value":
+        case "stringifier":
+        case "serializer":
+        case "iterator":
+        case "maplike":
+        case "setlike":
+        case "state":
+        case "mode":
+        case "context":
+        case "facet": return true;
+
+        default: return false;
+    }
+}
+function refusesFor(type) {
+    switch(type) {
+        case "property":
+        case "element":
+        case "interface":
+        case "namespace":
+        case "callback":
+        case "dictionary":
+        case "enum":
+        case "exception":
+        case "typedef":
+        case "http-header":
+        case "permission": return true;
+
+        default: return false;
+    }
+}
+function linkFormatterFromType(type) {
+    switch(type) {
+        case 'scheme':
+        case 'permission':
+        case 'dfn': return (text) => `[=${text}=]`;
+
+        case 'abstract-op': return (text) => `[\$${text}\$]`;
+
+        case 'function':
+        case 'at-rule':
+        case 'selector':
+        case 'value': return (text) => `''${text}''`;
+
+        case 'http-header': return (text) => `[:${text}:]`;
+
+        case 'interface':
+        case 'constructor':
+        case 'method':
+        case 'argument':
+        case 'attribute':
+        case 'callback':
+        case 'dictionary':
+        case 'dict-member':
+        case 'enum':
+        case 'enum-value':
+        case 'exception':
+        case 'const':
+        case 'typedef':
+        case 'stringifier':
+        case 'serializer':
+        case 'iterator':
+        case 'maplike':
+        case 'setlike':
+        case 'extended-attribute':
+        case 'event':
+        case 'idl': return (text) => `{{${text}}}`;
+
+        case 'element-state':
+        case 'element-attr':
+        case 'attr-value':
+        case 'element': return (element) => `<{${element}}>`;
+
+        case 'grammar': return (text) => `${text} (within a <pre class=prod>)`;
+
+        case 'type': return (text)=> `<<${text}>>`;
+
+        case 'descriptor':
+        case 'property': return (text) => `'${text}'`;
+
+        default: return;
+    };
+};
+
+function genLinkingSyntaxes(dfn) {
+    if(dfn.tagName != "DFN") return;
+
+    const type = dfn.getAttribute('data-dfn-type');
+    if(!type) {
+        console.log(`<dfn> doesn't have a data-dfn-type:`, dfn);
+        return [];
+    }
+
+    // Return a function that wraps link text based on the type
+    const linkFormatter = linkFormatterFromType(type);
+    if(!linkFormatter) {
+        console.log(`<dfn> has an unknown data-dfn-type:`, dfn);
+        return [];
+    }
+
+    let ltAlts;
+    if(dfn.hasAttribute('data-lt')) {
+        ltAlts = dfn.getAttribute('data-lt')
+            .split("|")
+            .map(x=>x.trim());
+    } else {
+        ltAlts = [dfn.textContent.trim()];
+    }
+    if(type == "type") {
+        // lt of "<foo>", but "foo" is the interior;
+        // <<foo/bar>> is how you write it with a for,
+        // not <foo/<bar>> or whatever.
+        for(var i = 0; i < ltAlts.length; i++) {
+            const lt = ltAlts[i];
+            const match = /<(.*)>/.exec(lt);
+            if(match) { ltAlts[i] = match[1]; }
+        }
+    }
+
+    let forAlts;
+    if(dfn.hasAttribute('data-dfn-for')) {
+        forAlts = dfn.getAttribute('data-dfn-for')
+            .split(",")
+            .map(x=>x.trim());
+    } else {
+        forAlts = [''];
+    }
+
+    let linkingSyntaxes = [];
+    if(!needsFor(type)) {
+        for(const lt of ltAlts) {
+            linkingSyntaxes.push(linkFormatter(lt));
+        }
+    }
+    if(!refusesFor(type)) {
+        for(const f of forAlts) {
+            linkingSyntaxes.push(linkFormatter(`${f}/${ltAlts[0]}`))
+        }
+    }
+    return [
+        mk.b({}, 'Possible linking syntaxes:'),
+        mk.ul({},
+            ...linkingSyntaxes.map(link => {
+                const copyLink = async () =>
+                    await navigator.clipboard.writeText(link);
+                return mk.li({},
+                    mk.div({ class: 'link-item' },
+                        mk.button({
+                            class: 'copy-icon', title: 'Copy',
+                            type: 'button',
+                            _onclick: copyLink,
+                            tabindex: 0,
+                        }, mk.span({ class: 'icon' }) ),
+                        mk.span({}, link)
+                    )
+                );
+            })
+        )
+    ];
+}
+}
+</script>
+<script>/* Boilerplate: script-ref-hints */
+"use strict";
+{
+let refsData = {
+"#dom-xrinputsource-gamepad": {"displayText":"gamepad","export":true,"for_":["XRInputSource"],"level":"1","normative":true,"shortname":"webxr-gamepads-module","spec":"webxr-gamepads-module-1","status":"local","text":"gamepad","type":"attribute","url":"#dom-xrinputsource-gamepad"},
+"#placeholder-axis": {"displayText":"placeholder axis","export":true,"for_":[],"level":"1","normative":true,"shortname":"webxr-gamepads-module","spec":"webxr-gamepads-module-1","status":"local","text":"placeholder axis","type":"dfn","url":"#placeholder-axis"},
+"#placeholder-button": {"displayText":"placeholder button","export":true,"for_":[],"level":"1","normative":true,"shortname":"webxr-gamepads-module","spec":"webxr-gamepads-module-1","status":"local","text":"placeholder button","type":"dfn","url":"#placeholder-button"},
+"#primary-squeeze-button": {"displayText":"primary squeeze button","export":true,"for_":[],"level":"1","normative":true,"shortname":"webxr-gamepads-module","spec":"webxr-gamepads-module-1","status":"local","text":"primary squeeze button","type":"dfn","url":"#primary-squeeze-button"},
+"#primary-trigger": {"displayText":"primary trigger","export":true,"for_":[],"level":"1","normative":true,"shortname":"webxr-gamepads-module","spec":"webxr-gamepads-module-1","status":"local","text":"primary trigger","type":"dfn","url":"#primary-trigger"},
+"#xr-input-source": {"displayText":"xr input source","export":true,"for_":[],"level":"1","normative":true,"shortname":"webxr-gamepads-module","spec":"webxr-gamepads-module-1","status":"local","text":"xr input source","type":"dfn","url":"#xr-input-source"},
+"#xrframe-apply-gamepad-frame-updates": {"displayText":"apply gamepad frame updates","export":true,"for_":["XRFrame"],"level":"1","normative":true,"shortname":"webxr-gamepads-module","spec":"webxr-gamepads-module-1","status":"local","text":"apply gamepad frame updates","type":"dfn","url":"#xrframe-apply-gamepad-frame-updates"},
+"https://immersive-web.github.io/webxr/#dom-xrframe-session": {"displayText":"session","export":true,"for_":["XRFrame"],"level":"1","normative":true,"shortname":"webxr","spec":"webxr","status":"current","text":"session","type":"attribute","url":"https://immersive-web.github.io/webxr/#dom-xrframe-session"},
+"https://immersive-web.github.io/webxr/#dom-xrinputsource-gripspace": {"displayText":"gripSpace","export":true,"for_":["XRInputSource"],"level":"1","normative":true,"shortname":"webxr","spec":"webxr","status":"current","text":"gripSpace","type":"attribute","url":"https://immersive-web.github.io/webxr/#dom-xrinputsource-gripspace"},
+"https://immersive-web.github.io/webxr/#dom-xrinputsource-targetraymode": {"displayText":"targetRayMode","export":true,"for_":["XRInputSource"],"level":"1","normative":true,"shortname":"webxr","spec":"webxr","status":"current","text":"targetRayMode","type":"attribute","url":"https://immersive-web.github.io/webxr/#dom-xrinputsource-targetraymode"},
+"https://immersive-web.github.io/webxr/#dom-xrsession-inputsources": {"displayText":"inputSources","export":true,"for_":["XRSession"],"level":"1","normative":true,"shortname":"webxr","spec":"webxr","status":"current","text":"inputSources","type":"attribute","url":"https://immersive-web.github.io/webxr/#dom-xrsession-inputsources"},
+"https://immersive-web.github.io/webxr/#dom-xrtargetraymode-tracked-pointer": {"displayText":"\"tracked-pointer\"","export":true,"for_":["XRTargetRayMode"],"level":"1","normative":true,"shortname":"webxr","spec":"webxr","status":"current","text":"\"tracked-pointer\"","type":"enum-value","url":"https://immersive-web.github.io/webxr/#dom-xrtargetraymode-tracked-pointer"},
+"https://immersive-web.github.io/webxr/#xrframe": {"displayText":"XRFrame","export":true,"for_":[],"level":"1","normative":true,"shortname":"webxr","spec":"webxr","status":"current","text":"XRFrame","type":"interface","url":"https://immersive-web.github.io/webxr/#xrframe"},
+"https://immersive-web.github.io/webxr/#xrinputsource": {"displayText":"XRInputSource","export":true,"for_":[],"level":"1","normative":true,"shortname":"webxr","spec":"webxr","status":"current","text":"XRInputSource","type":"interface","url":"https://immersive-web.github.io/webxr/#xrinputsource"},
+"https://immersive-web.github.io/webxr/#xrsession": {"displayText":"XRSession","export":true,"for_":[],"level":"1","normative":true,"shortname":"webxr","spec":"webxr","status":"current","text":"XRSession","type":"interface","url":"https://immersive-web.github.io/webxr/#xrsession"},
+"https://webidl.spec.whatwg.org/#SameObject": {"displayText":"SameObject","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"SameObject","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#SameObject"},
+"https://www.w3.org/TR/gamepad/#dfn-selecting-an-unused-gamepad-index": {"displayText":"select an unused gamepad index","export":true,"for_":[],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"select an unused gamepad index","type":"dfn","url":"https://www.w3.org/TR/gamepad/#dfn-selecting-an-unused-gamepad-index"},
+"https://www.w3.org/TR/gamepad/#dom-gamepad": {"displayText":"Gamepad","export":true,"for_":[],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"Gamepad","type":"interface","url":"https://www.w3.org/TR/gamepad/#dom-gamepad"},
+"https://www.w3.org/TR/gamepad/#dom-gamepad-axes": {"displayText":"axes","export":true,"for_":["Gamepad"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"axes","type":"attribute","url":"https://www.w3.org/TR/gamepad/#dom-gamepad-axes"},
+"https://www.w3.org/TR/gamepad/#dom-gamepad-buttons": {"displayText":"buttons","export":true,"for_":["Gamepad"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"buttons","type":"attribute","url":"https://www.w3.org/TR/gamepad/#dom-gamepad-buttons"},
+"https://www.w3.org/TR/gamepad/#dom-gamepad-connected": {"displayText":"connected","export":true,"for_":["Gamepad"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"connected","type":"attribute","url":"https://www.w3.org/TR/gamepad/#dom-gamepad-connected"},
+"https://www.w3.org/TR/gamepad/#dom-gamepad-id": {"displayText":"id","export":true,"for_":["Gamepad"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"id","type":"attribute","url":"https://www.w3.org/TR/gamepad/#dom-gamepad-id"},
+"https://www.w3.org/TR/gamepad/#dom-gamepad-index": {"displayText":"index","export":true,"for_":["Gamepad"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"index","type":"attribute","url":"https://www.w3.org/TR/gamepad/#dom-gamepad-index"},
+"https://www.w3.org/TR/gamepad/#dom-gamepad-mapping": {"displayText":"mapping","export":true,"for_":["Gamepad"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"mapping","type":"attribute","url":"https://www.w3.org/TR/gamepad/#dom-gamepad-mapping"},
+"https://www.w3.org/TR/gamepad/#dom-gamepadbutton": {"displayText":"GamepadButton","export":true,"for_":[],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"GamepadButton","type":"interface","url":"https://www.w3.org/TR/gamepad/#dom-gamepadbutton"},
+"https://www.w3.org/TR/gamepad/#dom-gamepadbutton-pressed": {"displayText":"pressed","export":true,"for_":["GamepadButton"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"pressed","type":"attribute","url":"https://www.w3.org/TR/gamepad/#dom-gamepadbutton-pressed"},
+"https://www.w3.org/TR/gamepad/#dom-gamepadbutton-touched": {"displayText":"touched","export":true,"for_":["GamepadButton"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"touched","type":"attribute","url":"https://www.w3.org/TR/gamepad/#dom-gamepadbutton-touched"},
+"https://www.w3.org/TR/gamepad/#dom-gamepadbutton-value": {"displayText":"value","export":true,"for_":["GamepadButton"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"value","type":"attribute","url":"https://www.w3.org/TR/gamepad/#dom-gamepadbutton-value"},
+"https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard": {"displayText":"\"xr-standard\"","export":true,"for_":["GamepadMappingType"],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"\"xr-standard\"","type":"enum-value","url":"https://www.w3.org/TR/gamepad/#dom-gamepadmappingtype-xr-standard"},
+"https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads": {"displayText":"navigator.getGamepads()","export":true,"for_":[],"level":"","normative":true,"shortname":"gamepad","spec":"gamepad","status":"anchor-block","text":"navigator.getGamepads()","type":"method","url":"https://www.w3.org/TR/gamepad/#dom-navigator-getgamepads"},
+"https://www.w3.org/TR/webxr/#xrframe-time": {"displayText":"time","export":true,"for_":["XRFrame"],"level":"","normative":true,"shortname":"webxr device api - level 1","spec":"webxr device api - level 1","status":"anchor-block","text":"time","type":"dfn","url":"https://www.w3.org/TR/webxr/#xrframe-time"},
+"https://www.w3.org/TR/webxr/#xrsession-list-of-frame-updates": {"displayText":"list of frame updates","export":true,"for_":["XRSession"],"level":"","normative":true,"shortname":"webxr device api - level 1","spec":"webxr device api - level 1","status":"anchor-block","text":"list of frame updates","type":"dfn","url":"https://www.w3.org/TR/webxr/#xrsession-list-of-frame-updates"},
+};
+
+function mkRefHint(link, ref) {
+    const linkText = link.textContent;
+    let dfnTextElements = '';
+    if (ref.displayText.toLowerCase() != linkText.toLowerCase()) {
+        // Give the original term if it's being displayed in a different way.
+        // But allow casing differences, they're insignificant.
+        dfnTextElements =
+            mk.li({},
+                mk.b({}, "Term: "),
+                mk.span({}, ref.displayText)
+            );
+    }
+    const forList = ref.for_;
+    let forListElements;
+    if(forList.length == 0) {
+        forListElements = [];
+    } else if(forList.length == 1) {
+        forListElements = mk.li({},
+            mk.b({}, "For: "),
+            mk.span({}, forList[0]),
+        );
+    } else {
+        forListElements = mk.li({},
+            mk.b({}, "For: "),
+            mk.ul({},
+                ...forList.map(forItem =>
+                    mk.li({},
+                        mk.span({}, forItem)
+                    ),
+                ),
+            ),
+        );
+    }
+    const url = ref.url;
+    const safeUrl = encodeURIComponent(url);
+    const hintPanel = mk.aside({
+        class: "ref-hint",
+        id: `ref-hint-for-${safeUrl}`,
+        "data-for": url,
+        "aria-labelled-by": `ref-hint-for-${safeUrl}`,
+    },
+        mk.ul({},
+            dfnTextElements,
+            mk.li({},
+                mk.b({}, "URL: "),
+                mk.a({ href: url, class: "ref" }, url),
+            ),
+            mk.li({},
+                mk.b({}, "Type: "),
+                mk.span({}, `${ref.type}`),
+            ),
+            mk.li({},
+                mk.b({}, "Spec: "),
+                mk.span({}, `${ref.spec ? ref.spec : ''}`),
+            ),
+            forListElements
+        ),
+    );
+    hintPanel.forLink = link;
+    setupRefHintEventListeners(link, hintPanel);
+    return hintPanel;
+}
+
+function hideAllRefHints() {
+    queryAll(".ref-hint").forEach(el=>hideRefHint(el));
+}
+
+function hideRefHint(refHint) {
+    const link = refHint.forLink;
+    link.setAttribute("aria-expanded", "false");
+    if(refHint.teardownEventListeners) {
+        refHint.teardownEventListeners();
+    }
+    refHint.remove();
+}
+
+function showRefHint(link) {
+    if(link.classList.contains("dfn-link")) return;
+    const url = link.getAttribute("href");
+    const refHintKey = link.getAttribute("data-refhint-key");
+    let key = url;
+    if(refHintKey) {
+        key = refHintKey + "_" + url;
+    }
+    const ref = refsData[key];
+    if(!ref) return;
+
+    hideAllRefHints(); // Only display one at this time.
+
+    const refHint = mkRefHint(link, ref);
+    append(document.body, refHint);
+    link.setAttribute("aria-expanded", "true");
+    positionRefHint(refHint);
+}
+
+function setupRefHintEventListeners(link, refHint) {
+    if (refHint.teardownEventListeners) return;
+    // Add event handlers to hide the refHint after the user moves away
+    // from both the link and refHint, if not hovering either within one second.
+    let timeout = null;
+    const startHidingRefHint = (event) => {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
+            hideRefHint(refHint);
+        }, 1000);
+    }
+    const resetHidingRefHint = (event) => {
+        if (timeout) clearTimeout(timeout);
+        timeout = null;
+    };
+    link.addEventListener("mouseleave", startHidingRefHint);
+    link.addEventListener("mouseenter", resetHidingRefHint);
+    link.addEventListener("blur", startHidingRefHint);
+    link.addEventListener("focus", resetHidingRefHint);
+    refHint.addEventListener("mouseleave", startHidingRefHint);
+    refHint.addEventListener("mouseenter", resetHidingRefHint);
+    refHint.addEventListener("blur", startHidingRefHint);
+    refHint.addEventListener("focus", resetHidingRefHint);
+
+    refHint.teardownEventListeners = () => {
+        // remove event listeners
+        resetHidingRefHint();
+        link.removeEventListener("mouseleave", startHidingRefHint);
+        link.removeEventListener("mouseenter", resetHidingRefHint);
+        link.removeEventListener("blur", startHidingRefHint);
+        link.removeEventListener("focus", resetHidingRefHint);
+        refHint.removeEventListener("mouseleave", startHidingRefHint);
+        refHint.removeEventListener("mouseenter", resetHidingRefHint);
+        refHint.removeEventListener("blur", startHidingRefHint);
+        refHint.removeEventListener("focus", resetHidingRefHint);
+    };
+}
+
+function positionRefHint(refHint) {
+    const link = refHint.forLink;
+    const linkPos = getBounds(link);
+    refHint.style.top = linkPos.bottom + "px";
+    refHint.style.left = linkPos.left + "px";
+
+    const panelPos = refHint.getBoundingClientRect();
+    const panelMargin = 8;
+    const maxRight = document.body.parentNode.clientWidth - panelMargin;
+    if (panelPos.right > maxRight) {
+        const overflowAmount = panelPos.right - maxRight;
+        const newLeft = Math.max(panelMargin, linkPos.left - overflowAmount);
+        refHint.style.left = newLeft + "px";
+    }
+}
+
+// TODO: shared util
+// Returns the root-level absolute position {left and top} of element.
+function getBounds(el, relativeTo=document.body) {
+    const relativeRect = relativeTo.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const top = elRect.top - relativeRect.top;
+    const left = elRect.left - relativeRect.left;
+    return {
+        top,
+        left,
+        bottom: top + elRect.height,
+        right: left + elRect.width,
+    }
+}
+
+function showRefHintListener(e) {
+    // If the target isn't in a link (or is a link),
+    // just ignore it.
+    let link = e.target.closest("a");
+    if(!link) return;
+
+    // If the target is in a ref-hint panel
+    // (aka a link in the already-open one),
+    // also just ignore it.
+    if(link.closest(".ref-hint")) return;
+
+    // Otherwise, show the panel for the link.
+    showRefHint(link);
+}
+
+function hideAllHintsListener(e) {
+    // If the click is inside a ref-hint panel, ignore it.
+    if(e.target.closest(".ref-hint")) return;
+    // Otherwise, close all the current panels.
+    hideAllRefHints();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.addEventListener("mousedown", showRefHintListener);
+    document.body.addEventListener("focus", showRefHintListener);
+
+    document.body.addEventListener("click", hideAllHintsListener);
+});
+
+window.addEventListener("resize", () => {
+    // Hide any open ref hint.
+    hideAllRefHints();
+});
 }
 </script>
